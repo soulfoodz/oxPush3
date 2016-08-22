@@ -1,0 +1,51 @@
+PODS:
+  - AFNetworking (2.6.3):
+    - AFNetworking/NSURLConnection (= 2.6.3)
+    - AFNetworking/NSURLSession (= 2.6.3)
+    - AFNetworking/Reachability (= 2.6.3)
+    - AFNetworking/Security (= 2.6.3)
+    - AFNetworking/Serialization (= 2.6.3)
+    - AFNetworking/UIKit (= 2.6.3)
+  - AFNetworking/NSURLConnection (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.3)
+  - AFNetworking/Security (2.6.3)
+  - AFNetworking/Serialization (2.6.3)
+  - AFNetworking/UIKit (2.6.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - CocoaAsyncSocket (7.4.1)
+  - NHNetworkTime (1.6):
+    - CocoaAsyncSocket (<= 7.4.1)
+  - NSHash (1.1.0)
+  - ox-push2-ios-pod (0.1.0):
+    - AFNetworking
+    - NHNetworkTime
+    - NSHash
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5)
+  - NHNetworkTime
+  - NSHash (~> 1.1.0)
+  - ox-push2-ios-pod (from `../`)
+
+EXTERNAL SOURCES:
+  ox-push2-ios-pod:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
+  NHNetworkTime: d4a05f26fc3676a722db38724adda7dba7321ba1
+  NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
+  ox-push2-ios-pod: 5a0e8f8a64a220a5b924c2c754ea3b826ec663e1
+
+PODFILE CHECKSUM: 46af2cf2c2fbec3dc5fb7eb288658140635918cb
+
+COCOAPODS: 1.0.0

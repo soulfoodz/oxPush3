@@ -1,0 +1,6 @@
+framework module NHNetworkTime {
+  umbrella header "NHNetworkTime-umbrella.h"
+
+  export *
+  module * { export * }
+}
