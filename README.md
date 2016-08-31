@@ -6,7 +6,7 @@ To use ox-push2 framework you can edit your pod file, just add next:
 
       pod 'ox-push2-ios-pod', :git => 'https://github.com/GluuFederation/ox-push2-ios-pod.git'
 
-Or copy&past folder ox-push2 to your project folder
+Or copy&past folder "ox-push2-ios-pod" to your project folder
 
 
 ## How to use
