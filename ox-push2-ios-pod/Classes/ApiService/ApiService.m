@@ -7,7 +7,7 @@
 //
 
 #import "ApiService.h"
-#import "AFHTTPRequestOperationManager.h"
+#import "AFHTTPSessionManager.h"
 #import "Constants.h"
 #import "LogManager.h"
 #import "DataStoreManager.h"
@@ -35,19 +35,19 @@
 
 //---------------------- HTTP REQUEST MANAGER ---------------------------------
 
--(AFHTTPRequestOperationManager*)getAFHTTPRequestManager{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+-(AFHTTPSessionManager*)getAFHTTPRequestManager{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer
                                   serializerWithReadingOptions:NSJSONReadingAllowFragments];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];//x-www-form-urlencoded"];
     
     /**** SSL Pinning ****/
-    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"super-gluu-ssl" ofType:@"crt"];
-    NSData *certData = [NSData dataWithContentsOfFile:cerPath];
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
-    [securityPolicy setAllowInvalidCertificates:NO];
-    [securityPolicy setPinnedCertificates:@[certData]];
+//    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"super-gluu-ssl" ofType:@"crt"];
+//    NSData *certData = [NSData dataWithContentsOfFile:cerPath];
+//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
+//    [securityPolicy setAllowInvalidCertificates:NO];
+//    [securityPolicy setPinnedCertificates:@[certData]];
     /**** SSL Pinning ****/
     
 //    [manager setSecurityPolicy:securityPolicy];
@@ -57,12 +57,12 @@
 }
 
 -(void)callGETAPIService:(NSString*)url andParameters:(NSDictionary*)parameters andCallback:(RequestCompletionHandler)handler{
-    AFHTTPRequestOperationManager *manager = [self getAFHTTPRequestManager];
+    AFHTTPSessionManager *manager = [self getAFHTTPRequestManager];
     
-    [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:url parameters:parameters success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         handler(responseObject ,nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         handler(nil , error);
     }];
@@ -73,16 +73,16 @@
     
 //    AFHTTPRequestOperationManager *manager = [self getAFHTTPRequestManager];
 
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer
                                   serializerWithReadingOptions:NSJSONReadingAllowFragments];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/x-www-form-urlencoded"];//x-www-form-urlencoded"];//application/json
     
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:url parameters:parameters success:^(NSURLSessionDataTask *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
         handler(responseObject ,nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         handler(nil , error);
     }];

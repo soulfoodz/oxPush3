@@ -18,7 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    NSString* requestString = @"{\"app\":\"https://ce-release.gluu.org/identity/authentication/authcode\",\"username\":\"admin\",\"method\":\"enroll\",\"state\":\"35e37974-db3d-474b-ba4e-35fda6499ba9\",\"created\":\"2016-04-11T09:31:01.020000\",\"issuer\":\"https://ce-release.gluu.org\"}";
+    NSData *data = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    [self doRequest:jsonDictionary];
 }
 
 -(void)doRequest:(NSDictionary*)jsonDictionary{

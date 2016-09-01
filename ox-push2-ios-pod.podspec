@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ox-push2-ios-pod'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = 'A short description of ox-push2-ios-pod.'
 
 # This description is used to generate tags and improve search results.
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/GluuFederation/ox-push2-ios-pod'
+  s.homepage         = 'https://github.com/GluuFederation/ox-push2-ios-pod.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'NazarYavornytskyy' => 'nazaryavornytskyy@gmail.com' }
@@ -32,14 +32,15 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'ox-push2-ios-pod/Classes/**/*.{m,h,mm,hpp,cpp,c}'
   
-  # s.resource_bundles = {
-  #   'ox-push2-ios-pod' => ['ox-push2-ios-pod/Assets/*.png']
-  # }
+  #s.resource_bundles = {
+  #   'Resources' => ['ox-push2-ios-pod/Resources/**/*.{xcdatamodeld,png,jpeg,jpg}']
+  #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
+  s.resources = 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld'
   s.dependency 'AFNetworking'
   s.dependency 'NHNetworkTime'
   s.dependency 'NSHash'
-	#, '~> 2.3'
+
 end
