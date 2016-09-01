@@ -1,15 +1,11 @@
+platform :ios, '8.0'
 use_frameworks!
 
 target 'ox-push2-ios-pod_Example' do
-  pod 'ox-push2-ios-pod', :path => '../'
+  pod 'ox-push2-ios-pod'
+#, :path => '/Users/nazaryavornytskyy/ox-push2-ios-pod'
+  pod 'AFNetworking'
+  pod 'NSHash'
+  pod 'NHNetworkTime'
 
-pod 'AFNetworking'
-pod 'NSHash'
-pod 'NHNetworkTime'
-
-  target 'ox-push2-ios-pod_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

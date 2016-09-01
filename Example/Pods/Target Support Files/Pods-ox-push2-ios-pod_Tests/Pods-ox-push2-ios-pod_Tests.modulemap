@@ -1,6 +1,0 @@
-framework module Pods_ox_push2_ios_pod_Tests {
-  umbrella header "Pods-ox-push2-ios-pod_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
