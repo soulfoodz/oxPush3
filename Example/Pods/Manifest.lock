@@ -18,7 +18,7 @@ PODS:
   - NHNetworkTime (1.6):
     - CocoaAsyncSocket (<= 7.4.1)
   - NSHash (1.1.0)
-  - ox-push2-ios-pod (0.1.1):
+  - ox-push2-ios-pod (0.1.2):
     - AFNetworking
     - NHNetworkTime
     - NSHash
@@ -27,19 +27,15 @@ DEPENDENCIES:
   - AFNetworking
   - NHNetworkTime
   - NSHash
-  - ox-push2-ios-pod (from `../`)
-
-EXTERNAL SOURCES:
-  ox-push2-ios-pod:
-    :path: ../
+  - ox-push2-ios-pod
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
   NHNetworkTime: d4a05f26fc3676a722db38724adda7dba7321ba1
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
-  ox-push2-ios-pod: 14723d3b6950603b8fdb5ee4377bdf4526ee6aa4
+  ox-push2-ios-pod: 66c5074df3375b1e14ce6fa12d97039435370342
 
-PODFILE CHECKSUM: e042f68ded3960d52c020811569cd8597c0a5cd7
+PODFILE CHECKSUM: 8f10175710b23e3e8cc133cbeaf34b3ec0a75360
 
 COCOAPODS: 1.0.0

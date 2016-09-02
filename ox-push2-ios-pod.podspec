@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ox-push2-ios-pod'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A short description of ox-push2-ios-pod.'
 
 # This description is used to generate tags and improve search results.
@@ -32,13 +32,13 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'ox-push2-ios-pod/Classes/**/*.{m,h,mm,hpp,cpp,c}'
   
-  #s.resource_bundles = {
-  #   'Resources' => ['ox-push2-ios-pod/Resources/**/*.{xcdatamodeld,png,jpeg,jpg}']
-  #}
+  s.resource_bundles = {
+     'Resources' => 'ox-push2-ios-pod/Classes/DataStore/Database/*.xcdatamodeld'
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.resources = 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld'
+  # s.resources = 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld'
   s.dependency 'AFNetworking'
   s.dependency 'NHNetworkTime'
   s.dependency 'NSHash'
