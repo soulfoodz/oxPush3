@@ -37,8 +37,8 @@
             [parameters setObject:[oxRequest userName] forKey:@"username"];
         }
         NSString* created = [parameters objectForKey:@"created"];
-        [[UserLoginInfo sharedInstance] setIssuer:issuer];
-        [[UserLoginInfo sharedInstance] setCreated:created];
+//        [[UserLoginInfo sharedInstance] setIssuer:issuer];
+//        [[UserLoginInfo sharedInstance] setCreated:created];
         [[ApiServiceManager sharedInstance] doRequest:oxRequest callback:^(NSDictionary *result,NSError *error){
             if (error) {
                 [self handleError:error];
@@ -63,7 +63,7 @@
                 if (!oneStep && [tokenEntities count] > 0){
                     __block BOOL isResult = NO;
                     for (TokenEntity* tokenEntity in tokenEntities){
-                        NSString* kHandle = [tokenEntity keyHandle];
+                        NSString* kHandle = tokenEntity->keyHandle;
 //                        NSString* kHandleURLEncode = [kHandle URLEncode];
                         if (kHandle != nil){
                             [parameters setObject:kHandle forKey:@"keyhandle"];

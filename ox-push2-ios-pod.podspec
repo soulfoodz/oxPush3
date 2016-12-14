@@ -30,15 +30,17 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ox-push2-ios-pod/Classes/**/*.{m,h,mm,hpp,cpp,c}'
+  s.source_files = 'ox-push2-ios-pod/Classes/**/*.{m,h,mm,hpp,cpp,c, ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld, ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld/*.xcdatamodel}'
   
-  s.resource_bundles = {
-     'Resources' => 'ox-push2-ios-pod/Classes/DataStore/Database/*.xcdatamodeld'
-  }
+  #s.resource_bundles = {
+  #   'Resources' => 'ox-push2-ios-pod/Classes/DataStore/Database/*.xcdatamodeld'
+  #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.resources = 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld'
+  s.resources = 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld', 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld/*.xcdatamodel'
+  s.preserve_paths = 'ox-push2-ios-pod/Classes/DataStore/Database/ecs.xcdatamodeld'
+  s.frameworks = 'CoreData'
   s.dependency 'AFNetworking'
   s.dependency 'NHNetworkTime'
   s.dependency 'NSHash'

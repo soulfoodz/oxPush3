@@ -8,29 +8,43 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserLoginInfo : NSObject
-
-typedef NS_ENUM(int, LogState) {
+typedef NS_ENUM(NSUInteger, LogState) {
     LOGIN_SUCCESS = 0,
-    LOGIN_FAILED = 1,
-    LOGIN_DECLINED = 2,
-    ENROLL_SUCCESS = 3,
-    ENROLL_FAILED = 4,
-    ENROLL_DECLINED = 5,
-    UNKNOWN_ERROR = 6
+    LOGIN_FAILED,
+    LOGIN_DECLINED,
+    ENROLL_SUCCESS,
+    ENROLL_FAILED,
+    ENROLL_DECLINED,
+    UNKNOWN_ERROR
 };
 
-+ (instancetype) sharedInstance;
+//typedef enum LogState : NSString {
+//    LOGIN_SUCCESS,
+//    LOGIN_FAILED,
+//    LOGIN_DECLINED,
+//    ENROLL_SUCCESS,
+//    ENROLL_FAILED,
+//    NROLL_DECLINED,
+//    UNKNOWN_ERROR
+//} LogState;
 
-@property (strong, nonatomic) NSString* userName;
-@property (strong, nonatomic) NSString* created;
-@property (strong, nonatomic) NSString* application;
-@property (strong, nonatomic) NSString* issuer;
-@property (strong, nonatomic) NSString* authenticationType;
-@property (strong, nonatomic) NSString* authenticationMode;
-@property (strong, nonatomic) NSString* locationIP;
-@property (strong, nonatomic) NSString* locationCity;
-@property (assign, nonatomic) LogState logState;
-@property (strong, nonatomic) NSString* errorMessage;
+@interface UserLoginInfo : NSObject{
+    @public
+    NSString* userName;
+    NSString* created;
+    NSString* application;
+    NSString* issuer;
+    NSString* authenticationType;
+    NSString* authenticationMode;
+    NSString* locationIP;
+    NSString* locationCity;
+    LogState logState;
+    NSString* errorMessage;
+    
+}
+    
++ (instancetype) sharedInstance;
+    
+- (NSString *)displayNameForWonderfulType:(LogState)logState;
 
 @end

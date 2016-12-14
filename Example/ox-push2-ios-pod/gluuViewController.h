@@ -8,6 +8,14 @@
 
 @import UIKit;
 
-@interface gluuViewController : UIViewController
+#import "QRCodeReaderViewController.h"
+#import "QRCodeReaderDelegate.h"
+
+@interface gluuViewController : UIViewController <QRCodeReaderDelegate> {
+
+    QRCodeReaderViewController *qrScanerVC;
+    
+    BOOL isResultFromScan;
+}
 
 @end

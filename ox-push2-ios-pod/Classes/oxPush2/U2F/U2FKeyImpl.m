@@ -49,16 +49,16 @@ int keyHandleLength = 64;
         //Save new keys into database
         TokenEntity* newTokenEntity = [[TokenEntity alloc] init];
         NSString* keyID = application;
-        [newTokenEntity setID:keyID];
-        [newTokenEntity setApplication:application];
-        [newTokenEntity setIssuer:[enrollmentRequest issuer]];
-        [newTokenEntity setKeyHandle:[keyHandle base64EncodedString]];
-        [newTokenEntity setPublicKey:crypto.publicKeyBase64];
-        [newTokenEntity setPrivateKey:crypto.privateKeyBase64];
-        [newTokenEntity setUserName:[[UserLoginInfo sharedInstance] userName]];
-        [newTokenEntity setPairingTime:[[UserLoginInfo sharedInstance] created]];
-        [newTokenEntity setAuthenticationMode:[[UserLoginInfo sharedInstance] authenticationMode]];
-        [newTokenEntity setAuthenticationType:[[UserLoginInfo sharedInstance] authenticationType]];
+        newTokenEntity->ID = keyID;
+        newTokenEntity->application = application;
+        newTokenEntity->issuer = [enrollmentRequest issuer];
+        newTokenEntity->keyHandle = [keyHandle base64EncodedString];
+        newTokenEntity->publicKey = crypto.publicKeyBase64;
+        newTokenEntity->privateKey = crypto.privateKeyBase64;
+        newTokenEntity->userName = [UserLoginInfo sharedInstance]->userName;
+        newTokenEntity->pairingTime = [UserLoginInfo sharedInstance]->created;
+        newTokenEntity->authenticationMode = [UserLoginInfo sharedInstance]->authenticationMode;
+        newTokenEntity->authenticationType = [UserLoginInfo sharedInstance]->authenticationType;
         [[DataStoreManager sharedInstance] saveTokenEntity:newTokenEntity];
     }
     
