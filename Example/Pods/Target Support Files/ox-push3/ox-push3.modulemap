@@ -1,0 +1,6 @@
+framework module ox_push3 {
+  umbrella header "ox-push3-umbrella.h"
+
+  export *
+  module * { export * }
+}

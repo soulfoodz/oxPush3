@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ox-push2-ios-pod.xcodeproj">
+      location = "group:/Users/nazaryavornytskyy/ox-push2-ios-pod/Example/ox-push3.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

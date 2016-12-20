@@ -88,12 +88,16 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NHNetworkTime/NHNetworkTime.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NSHash/NSHash.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ox-push2-ios-pod/ox_push2_ios_pod.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/QRCodeReaderViewController/QRCodeReaderViewController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView-Objective-C/SCLAlertView_Objective_C.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ox-push3/ox_push3.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
   install_framework "$BUILT_PRODUCTS_DIR/CocoaAsyncSocket/CocoaAsyncSocket.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NHNetworkTime/NHNetworkTime.framework"
   install_framework "$BUILT_PRODUCTS_DIR/NSHash/NSHash.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ox-push2-ios-pod/ox_push2_ios_pod.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/QRCodeReaderViewController/QRCodeReaderViewController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/SCLAlertView-Objective-C/SCLAlertView_Objective_C.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/ox-push3/ox_push3.framework"
 fi
