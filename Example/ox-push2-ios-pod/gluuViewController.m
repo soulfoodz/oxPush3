@@ -58,80 +58,45 @@
     }];
 }
     
-//-(void)saveTokenEntity:(TokenEntity*)tokenEntity{
-//    NSMutableArray* tokenArray = [[NSUserDefaults standardUserDefaults] valueForKey:@"KEY_ENTITY"];
-//    if (tokenArray != nil){
-//        [tokenArray addObject:tokenEntity];
-//    } else {
-//        tokenArray = [[NSMutableArray alloc] initWithObjects:tokenEntity, nil];
-//    }
-//    
-//    [[NSUserDefaults standardUserDefaults] setObject:tokenArray forKey:@"KEY_ENTITY"];
-//}
-//    
-//-(NSArray*)getTokenEntitiesByID:(NSString*)keyID{
-//    NSMutableArray* tokens = [[NSMutableArray alloc] init];
-//    NSArray* tokenArray = [[NSUserDefaults standardUserDefaults] valueForKey:@"KEY_ENTITY"];
-//    if (tokenArray != nil){
-//        for (TokenEntity* tokenEntity in tokenArray){
-//            if ([tokenEntity.ID isEqualToString:keyID]) {
-//                [tokens addObject:tokenEntity];
-//            }
-//        }
-//    }
-//    return tokens;
-//}
-//    
-//-(NSArray*)getTokenEntities{
-//    NSMutableArray* tokens = [[NSMutableArray alloc] init];
-//    NSArray* tokenArray = [[NSUserDefaults standardUserDefaults] valueForKey:@"KEY_ENTITY"];
-//    if (tokenArray != nil){
-//        for (TokenEntity* tokenEntity in tokenArray){
-//            [tokens addObject:tokenEntity];
-//        }
-//    }
-//    return tokens;
-//}
+-(void)initQRScanner{
+    // Create the reader object
+    QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
     
-    -(void)initQRScanner{
-        // Create the reader object
-        QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
-        
-        // Instantiate the view controller
-        qrScanerVC = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
-        
-        // Set the presentation style
-        qrScanerVC.modalPresentationStyle = UIModalPresentationFormSheet;
-        
-        // Define the delegate receiver
-        qrScanerVC.delegate = self;
-        
-        // Or use blocks
-        [reader setCompletionWithBlock:^(NSString *resultAsString) {
-            if(resultAsString && !isResultFromScan){
-                NSLog(@"%@", resultAsString);
-                [qrScanerVC dismissViewControllerAnimated:YES completion:^(void){
-                    NSData *data = [resultAsString dataUsingEncoding:NSUTF8StringEncoding];
-                    NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                    BOOL isEnroll = [[DataStoreManager sharedInstance] getTokenEntities] == 0;
-                    alertMessage = isEnroll ? @"Enroll" : @"Authentication";
-                    [self doRequest:jsonDictionary];
-                    isResultFromScan = YES;
-                }];
-            }
-        }];
-        isResultFromScan = NO;
-    }
+    // Instantiate the view controller
+    qrScanerVC = [QRCodeReaderViewController readerWithCancelButtonTitle:@"Cancel" codeReader:reader startScanningAtLoad:YES showSwitchCameraButton:YES showTorchButton:YES];
     
-    -(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message{
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert addButton:@"OK" actionBlock:^(void) {
-            NSLog(@"OK clicked");
-//            [self loadViewByID:@"main_view_seque"];
-        }];
-        [alert showCustom:nil color:[UIColor blueColor] title:title subTitle:message closeButtonTitle:nil duration:0.0f];
-    }
+    // Set the presentation style
+    qrScanerVC.modalPresentationStyle = UIModalPresentationFormSheet;
     
+    // Define the delegate receiver
+    qrScanerVC.delegate = self;
+    
+    // Or use blocks
+    [reader setCompletionWithBlock:^(NSString *resultAsString) {
+        if(resultAsString && !isResultFromScan){
+            NSLog(@"%@", resultAsString);
+            [qrScanerVC dismissViewControllerAnimated:YES completion:^(void){
+                NSData *data = [resultAsString dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                BOOL isEnroll = [[DataStoreManager sharedInstance] getTokenEntities] == 0;
+                alertMessage = isEnroll ? @"Enroll" : @"Authentication";
+                [self doRequest:jsonDictionary];
+                isResultFromScan = YES;
+            }];
+        }
+    }];
+    isResultFromScan = NO;
+}
+
+-(void)showAlertViewWithTitle:(NSString*)title andMessage:(NSString*)message{
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    [alert addButton:@"OK" actionBlock:^(void) {
+        NSLog(@"OK clicked");
+        //            [self loadViewByID:@"main_view_seque"];
+    }];
+    [alert showCustom:nil color:[UIColor blueColor] title:title subTitle:message closeButtonTitle:nil duration:0.0f];
+}
+
 -(void)showProcessingAlertViewWithessage:(NSString*)message{
     SCLAlertView *alertProcessing = [[SCLAlertView alloc] initWithNewWindow];
     [alertProcessing showWaiting:nil subTitle:message closeButtonTitle:nil duration:3.0f];
