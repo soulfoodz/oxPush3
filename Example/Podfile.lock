@@ -29,13 +29,9 @@ DEPENDENCIES:
   - AFNetworking
   - NHNetworkTime
   - NSHash
-  - ox-push3 (from `/Users/nazaryavornytskyy/ox-push2-ios-pod`)
+  - ox-push3
   - QRCodeReaderViewController (~> 4.0.1)
   - SCLAlertView-Objective-C
-
-EXTERNAL SOURCES:
-  ox-push3:
-    :path: /Users/nazaryavornytskyy/ox-push2-ios-pod
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -46,6 +42,6 @@ SPEC CHECKSUMS:
   QRCodeReaderViewController: e8f27d035b3e72b1d4b1c61ff66458287e3be0ff
   SCLAlertView-Objective-C: a2b8b09b8ce5fe14c233ecaa09c02be582c6389a
 
-PODFILE CHECKSUM: 9eeab82d8fbc6104ebd37382e675bbb1160712f9
+PODFILE CHECKSUM: d69e1233908de4cbbc3b81e28a3eeaa66006aea7
 
 COCOAPODS: 1.0.0

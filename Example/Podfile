@@ -1,9 +1,9 @@
 platform :ios, '8.0'
 use_frameworks!
 
-target 'ox-push2-ios-pod_Example' do
-  #pod 'ox-push2-ios-pod'
-  pod  'ox-push3', :path => '/Users/nazaryavornytskyy/ox-push2-ios-pod'
+target 'ox-push3_Example' do
+  pod 'ox-push3'
+  #pod  'ox-push3', :path => '/Users/nazaryavornytskyy/ox-push3'
   pod 'AFNetworking'
   pod 'NSHash'
   pod 'NHNetworkTime'
