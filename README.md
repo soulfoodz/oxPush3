@@ -2,7 +2,7 @@
 
 ## How to install
 
-To use ox-push2 framework you can edit your pod file, just add next:
+To use ox-push3 framework you can edit your pod file, just add next:
 
       pod 'ox-push3'
 or
