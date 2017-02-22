@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ox-push3'
-  s.version          = '0.1.4'
+  s.version          = '0.1.5'
   s.summary          = 'A short description of ox-push3.'
 
 # This description is used to generate tags and improve search results.
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/GluuFederation/ox-push2-ios-pod.git'
+  s.homepage         = 'https://github.com/GluuFederation/ox-push3.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Nazar Yavornytskyy' => 'nazaryavornytskyy@gmail.com' }
