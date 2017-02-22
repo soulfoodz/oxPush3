@@ -39,6 +39,28 @@
     [NSException raise:NSInvalidArgumentException format:@"The given format type number, %ld, is not known.", logState];
     return nil; // Keep the compiler happy - does not understand above line never returns!
 }
+
+- (LogState)displayTypeForWonderfulName:(NSString *)logState {
+    if ([logState isEqualToString:@"LOGIN_SUCCESS"]) {
+        return LOGIN_SUCCESS;
+    }
+    if ([logState isEqualToString:@"LOGIN_FAILED"]) {
+        return LOGIN_FAILED;
+    }
+    if ([logState isEqualToString:@"LOGIN_DECLINED"]) {
+        return LOGIN_DECLINED;
+    }
+    if ([logState isEqualToString:@"ENROLL_SUCCESS"]) {
+        return ENROLL_SUCCESS;
+    }
+    if ([logState isEqualToString:@"ENROLL_FAILED"]) {
+        return ENROLL_FAILED;
+    }
+    if ([logState isEqualToString:@"ENROLL_DECLINED"]) {
+        return ENROLL_DECLINED;
+    }
+    return UNKNOWN_ERROR;
+}
     
     /* This code has been added to support encoding and decoding my objecst */
     
@@ -72,7 +94,7 @@
             locationIP = [decoder decodeObjectForKey:@"locationIP"];
             locationCity = [decoder decodeObjectForKey:@"locationCity"];
             locationCity = [decoder decodeObjectForKey:@"locationCity"];
-            logState = [decoder decodeObjectForKey:@"logState"];
+            logState = [self displayTypeForWonderfulName:[decoder decodeObjectForKey:@"logState"]];
             errorMessage = [decoder decodeObjectForKey:@"errorMessage"];
         }
         return self;

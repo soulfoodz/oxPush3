@@ -166,13 +166,17 @@
 }
 
 -(void)saveUserLoginInfo:(UserLoginInfo*)userLoginInfo{
-
+    
     NSMutableArray* logs = [[NSUserDefaults standardUserDefaults] valueForKey:USER_INFO_ENTITIES];
-    NSMutableArray* newlogs = [[NSMutableArray alloc] initWithArray:logs];
-    if (newlogs != nil){
+    NSMutableArray* newlogs = [[NSMutableArray alloc] init];
+    if (logs == nil){
         [newlogs addObject:userLoginInfo];
     } else {
-        newlogs = [[NSMutableArray alloc] initWithObjects:userLoginInfo, nil];
+        [newlogs addObject:userLoginInfo];
+        for (NSData* logsData in logs){
+            UserLoginInfo* info = (UserLoginInfo*)[NSKeyedUnarchiver unarchiveObjectWithData:logsData];
+            [newlogs addObject:info];
+        }
     }
     
     NSMutableArray *archiveArray = [NSMutableArray arrayWithCapacity:newlogs.count];
@@ -182,16 +186,16 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:archiveArray forKey:USER_INFO_ENTITIES];
-
+    
     NSLog(@"Saved UserLoginInfoEntity to database success");
 }
 
 -(NSArray*)getUserLoginInfo{
     NSMutableArray* logs = [[NSMutableArray alloc] init];
     NSMutableArray* logsDataArray = [[NSUserDefaults standardUserDefaults] valueForKey:USER_INFO_ENTITIES];
-    if (logsDataArray == nil){
+    if (logsDataArray != nil){
         for (NSData* logsData in logsDataArray){
-            UserLoginInfo* info = [NSKeyedUnarchiver unarchiveObjectWithData:logsData];
+            UserLoginInfo* info = (UserLoginInfo*)[NSKeyedUnarchiver unarchiveObjectWithData:logsData];
             [logs addObject:info];
         }
     }
