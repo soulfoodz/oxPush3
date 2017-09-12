@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSData* userPresence;
 @property (assign, nonatomic) int counter;
 @property (strong, nonatomic) NSData* signature;
+@property (strong, nonatomic) NSData* secureClickData;
 
 -(id)initWithUserPresence:(NSData*)userPresence counter:(int)counter signature:(NSData*)signature;
 

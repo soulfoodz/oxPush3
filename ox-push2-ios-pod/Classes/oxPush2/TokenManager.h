@@ -14,10 +14,14 @@
 @interface TokenManager : NSObject{
 
     RawMessageCodec* codec;
-    U2FKeyImpl* u2FKey;
+//    U2FKeyImpl* u2FKey;
 }
 
--(TokenResponse*)enroll:(NSDictionary*)parameters baseUrl:(NSString*)baseUrl isDecline:(BOOL)isDecline;
--(TokenResponse*)sign:(NSDictionary*)parameters baseUrl:(NSString*)baseUrl isDecline:(BOOL)isDecline;
+typedef void(^TokenResponseCompletionHandler)(TokenResponse* tokenResponce, NSError *error);
+
+@property (strong, nonatomic) U2FKeyImpl* u2FKey;
+
+-(void)enroll:(NSDictionary*)parameters baseUrl:(NSString*)baseUrl isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick callBack:(TokenResponseCompletionHandler)handler;
+-(void)sign:(NSDictionary*)parameters baseUrl:(NSString*)baseUrl isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick userName:(NSString*)userName callBack:(TokenResponseCompletionHandler)handler;
 
 @end

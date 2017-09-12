@@ -19,24 +19,27 @@
 #import "TokenDevice.h"
 #import "UserLoginInfo.h"
 
+#define ENROLL_METHOD @"enroll"
+#define AUTHENTICATE_METHOD @"authenticate"
+
 @implementation OXPushManager
 
--(void)onOxPushApproveRequest:(NSDictionary*)parameters isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler{
+-(void)onOxPushApproveRequest:(NSDictionary*)parameters isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick callback:(RequestCompletionHandler)handler{
     NSString* app = [parameters objectForKey:@"app"];
     NSString* state = [parameters objectForKey:@"state"];
     NSString* created = [NSString stringWithFormat:@"%@", [NSDate date]];//[parameters objectForKey:@"created"];
     NSString* issuer = [parameters objectForKey:@"issuer"];
     NSString* username = [parameters objectForKey:@"username"];
+    NSString* method = [parameters objectForKey:@"method"];
     oneStep = username == nil ? YES : NO;
     if (app != nil && state != nil && created != nil && issuer != nil){
         OxPush2Request* oxRequest = [[OxPush2Request alloc] initWithName:username app:app issuer:issuer state:state method:@"GET" created:created];
         NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
         [parameters setObject:[oxRequest app] forKey:@"application"];
-        [parameters setObject:[oxRequest state] forKey:@"session_state"];
         if (!oneStep){
             [parameters setObject:[oxRequest userName] forKey:@"username"];
         }
-        NSString* created = [parameters objectForKey:@"created"];
+//        NSString* created = [parameters objectForKey:@"created"];
 //        [[UserLoginInfo sharedInstance] setIssuer:issuer];
 //        [[UserLoginInfo sharedInstance] setCreated:created];
         [[ApiServiceManager sharedInstance] doRequest:oxRequest callback:^(NSDictionary *result,NSError *error){
@@ -48,41 +51,40 @@
                 NSString* issuer = [result objectForKey:@"issuer"];
                 NSString* authenticationEndpoint = [result objectForKey:@"authentication_endpoint"];
                 NSString* registrationEndpoint = [result objectForKey:@"registration_endpoint"];
+                
+                //Check is old or new version of server
+                NSString* state_key = [authenticationEndpoint containsString:@"seam"] ? @"session_state" : @"session_id";
+                [parameters setObject:[oxRequest state] forKey:state_key];
+                
                 U2fMetaData* u2fMetaData = [[U2fMetaData alloc] initWithVersion:version issuer:issuer authenticationEndpoint:authenticationEndpoint registrationEndpoint:registrationEndpoint];
                 // Next step - get exist keys from database
 //                NSString* keyID = [NSString stringWithFormat:@"%@%@", [oxRequest issuer], [oxRequest app]];
                 NSString* keyID = [oxRequest app];
-                NSArray* tokenEntities = [[DataStoreManager sharedInstance] getTokenEntitiesByID:keyID];
+                NSArray* tokenEntities = [[DataStoreManager sharedInstance] getTokenEntitiesByID:keyID userName:username];
                 NSString* u2fEndpoint = [[NSString alloc] init];
-                BOOL isEnroll = [tokenEntities count] > 0 ? NO : YES;
-                if (!isEnroll){//authentication
-                    u2fEndpoint = [u2fMetaData authenticationEndpoint];
-                } else {//registration
+                BOOL isEnroll = [method isEqualToString:ENROLL_METHOD];//[tokenEntities count] > 0 ? NO : YES;
+                if (isEnroll){//registration
                     u2fEndpoint = [u2fMetaData registrationEndpoint];
+                } else {//authentication
+                    u2fEndpoint = [u2fMetaData authenticationEndpoint];
                 }
-                if (!oneStep && [tokenEntities count] > 0){
+                if (!oneStep && !isEnroll){
                     __block BOOL isResult = NO;
                     for (TokenEntity* tokenEntity in tokenEntities){
                         NSString* kHandle = tokenEntity->keyHandle;
-//                        NSString* kHandleURLEncode = [kHandle URLEncode];
                         if (kHandle != nil){
                             [parameters setObject:kHandle forKey:@"keyhandle"];
                             [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
                                 if (error) {
                                     handler(nil , error);
-//                                    [self handleError:error];
-                                    [[DataStoreManager sharedInstance] deleteTokenEntitiesByID:@""];
-//                                    [self postNotificationFailedKeyHandle];
+//                                    [[DataStoreManager sharedInstance] deleteTokenEntitiesByID:@""];
                                 } else {
                                     // Success
-//                                    NSLog(@"Success - %@", result);
                                     isResult = YES;
-//                                    if (!isDecline){
-//                                        [self postNotificationAutenticationStarting];
-//                                    }
-                                    [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline callback:^(NSDictionary *result,NSError *error){
+                                    [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick: isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
                                         if (error) {
                                             handler(nil , error);
+                                            return;
                                         } else {
                                             //Success
                                             handler(result ,nil);
@@ -95,11 +97,30 @@
                             break;
                         }
                     }
+                    if (isSecureClick){
+                        [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
+                            if (error) {
+                                handler(nil , error);
+                                //                                    [[DataStoreManager sharedInstance] deleteTokenEntitiesByID:@""];
+                            } else {
+                                // Success
+                                isResult = YES;
+                                [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick: isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
+                                    if (error) {
+                                        handler(nil , error);
+                                    } else {
+                                        //Success
+                                        handler(result ,nil);
+                                    }
+                                }];
+                            }
+                        }];
+                    }
                 } else {
                     if (!isDecline){
                         [self postNotificationEnrollementStarting];
                     }
-                    [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline callback:^(NSDictionary *result,NSError *error){
+                    [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick:isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
                         if (error) {
                             handler(nil , error);
                         } else {
@@ -113,41 +134,33 @@
     }
 }
 
--(void)callServiceChallenge:(NSString*)baseUrl isEnroll:(BOOL)isEnroll andParameters:(NSDictionary*)parameters isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler{
+-(void)callServiceChallenge:(NSString*)baseUrl isEnroll:(BOOL)isEnroll andParameters:(NSDictionary*)parameters isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick userName:(NSString*)userName callback:(RequestCompletionHandler)handler{
     [[ApiServiceManager sharedInstance] doGETUrl:baseUrl :parameters callback:^(NSDictionary *result,NSError *error){
         if (error) {
             handler(nil, error);
 //            [self postNotificationAutenticationFailed];
         } else {
             // Success getting authenticate MetaData
-            [self onChallengeReceived:baseUrl isEnroll:isEnroll metaData:result isDecline:isDecline callback:(RequestCompletionHandler)handler];
+            [self onChallengeReceived:baseUrl isEnroll:isEnroll metaData:result isDecline:isDecline isSecureClick:isSecureClick userName: userName callback:(RequestCompletionHandler)handler];
         }
     }];
 }
 
--(void)onChallengeReceived:(NSString*)baseUrl isEnroll:(BOOL)isEnroll metaData:(NSDictionary*)result isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler{
-    TokenResponse* tokenResponce;
+-(void)onChallengeReceived:(NSString*)baseUrl isEnroll:(BOOL)isEnroll metaData:(NSDictionary*)result isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick userName:(NSString*)userName callback:(RequestCompletionHandler)handler{
     TokenManager* tokenManager = [[TokenManager alloc] init];
+    tokenManager.u2FKey = [[U2FKeyImpl alloc] init];
     if (isEnroll){
         if (!isDecline){
             [self postNotificationEnrollementStarting];
         }
-        tokenResponce = [tokenManager enroll:result baseUrl:baseUrl isDecline:isDecline];
+        [tokenManager enroll:result baseUrl:baseUrl isDecline:isDecline isSecureClick: isSecureClick callBack:^(TokenResponse *tokenResponse, NSError *error){
+            [self handleTokenResponse:tokenResponse baseUrl:baseUrl isDecline:isDecline callback:handler];
+        }];
+    } else {
+        [tokenManager sign:result baseUrl:baseUrl isDecline:isDecline isSecureClick:isSecureClick userName: userName callBack:^(TokenResponse* tokenResponse, NSError *error){
+            [self handleTokenResponse:tokenResponse baseUrl:baseUrl isDecline:isDecline callback:handler];
+        }];
     }
-    if (tokenResponce == nil){
-        tokenResponce = [tokenManager sign:result baseUrl:baseUrl isDecline:isDecline];
-    }
-    NSMutableDictionary* tokenParameters = [[NSMutableDictionary alloc] init];
-    [tokenParameters setObject:@"username" forKey:@"username"];
-    [tokenParameters setObject:[tokenResponce response] forKey:@"tokenResponse"];
-    [self callServiceAuthenticateToken:baseUrl andParameters:tokenParameters isDecline:isDecline callback:^(NSDictionary *result,NSError *error){
-        if (error) {
-            handler(nil , error);
-        } else {
-            //Success
-            handler(result ,nil);
-        }
-    }];
 }
 
 -(void)callServiceAuthenticateToken:(NSString*)baseUrl andParameters:(NSDictionary*)parameters isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler{
@@ -159,6 +172,27 @@
             handler(result ,nil);
         }
     }];
+}
+
+-(void)handleTokenResponse:(TokenResponse*) tokenResponse baseUrl:(NSString*)baseUrl isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler {
+    if (tokenResponse == nil){
+        handler(nil , nil);
+        [UserLoginInfo sharedInstance]->logState = LOGIN_FAILED;
+        [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_FAILED object:nil];
+    } else {
+        NSMutableDictionary* tokenParameters = [[NSMutableDictionary alloc] init];
+        [tokenParameters setObject:@"username" forKey:@"username"];
+        [tokenParameters setObject:[tokenResponse response] forKey:@"tokenResponse"];
+        [self callServiceAuthenticateToken:baseUrl andParameters:tokenParameters isDecline:isDecline callback:^(NSDictionary *result,NSError *error){
+            if (error) {
+                handler(nil , error);
+            } else {
+                //Success
+                handler(result ,nil);
+            }
+        }];
+    }
 }
 
 -(void)postNotificationAutenticationStarting{

@@ -17,7 +17,7 @@
 
 typedef void(^RequestCompletionHandler)(NSDictionary *result, NSError *error);
 
--(void)onOxPushApproveRequest:(NSDictionary*)parameters isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler;
+-(void)onOxPushApproveRequest:(NSDictionary*)parameters isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick callback:(RequestCompletionHandler)handler;
 
 -(void)setDevicePushToken:(NSString*)deviceToken;
 -(NSArray*)getLogs;

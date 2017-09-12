@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSData* keyHandle;
 @property (strong, nonatomic) NSData* attestationCertificate;
 @property (strong, nonatomic) NSData* signature;
+@property (strong, nonatomic) NSData* secureClickEnrollData;
+@property (strong, nonatomic) NSData* secureClickChallenge;
 
 -(id)initWithUserPublicKey:(NSData*)userPublicKey keyHandle:(NSData*)keyHandle attestationCertificate:(NSData*)attestationCertificate signature:(NSData*)signature;
 

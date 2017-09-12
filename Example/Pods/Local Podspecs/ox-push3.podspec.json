@@ -1,9 +1,9 @@
 {
   "name": "ox-push3",
-  "version": "0.1.4",
-  "summary": "A short description of ox-push3.",
+  "version": "0.1.9",
+  "summary": "ox-push3 is an open source mobile two-factor authentication application",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/GluuFederation/ox-push2-ios-pod.git",
+  "homepage": "https://github.com/GluuFederation/ox-push3.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,8 +12,8 @@
     "Nazar Yavornytskyy": "nazaryavornytskyy@gmail.com"
   },
   "source": {
-    "git": "https://github.com/GluuFederation/ox-push2-ios-pod.git",
-    "tag": "0.1.4"
+    "git": "https://github.com/GluuFederation/ox-push3.git",
+    "tag": "0.1.9"
   },
   "platforms": {
     "ios": "8.0"

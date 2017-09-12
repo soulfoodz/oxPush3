@@ -16,6 +16,8 @@
 
 -(NSData*)encodeAuthenticateSignedBytes:(NSData*)applicationSha256 userPresence:(NSData*)userPresence counter:(int)counter challengeSha256:(NSData*)challengeSha256;
 
+-(NSData*)makeAuthenticateMessage:(NSData*)applicationSha256 challengeSha256:(NSData*)challengeSha256 keyHandle:(NSData*)keyHandle;
+
 -(NSData*)encodeRegisterResponse:(EnrollmentResponse*)enrollmentResponse;
 
 -(NSData*)encodeAuthenticateResponse:(AuthenticateResponse*)authenticateResponse;

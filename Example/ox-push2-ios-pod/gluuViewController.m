@@ -11,12 +11,15 @@
 #import "TokenEntity.h"
 #import "SCLAlertView.h"
 #import "DataStoreManager.h"
+#import "ox-push3-swift.h"
 
 @interface gluuViewController (){
 
     NSString* alertMessage;
+    PeripheralScanner* scanner;
+    BOOL isSecureClick;
 }
-    
+
     @end
 
 @implementation gluuViewController
@@ -29,6 +32,7 @@
 //        NSData *data = [requestString dataUsingEncoding:NSUTF8StringEncoding];
 //        NSDictionary* jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 //        [self doRequest:jsonDictionary];
+        isSecureClick = YES;
     }
     
 - (IBAction)scanAction:(id)sender
@@ -46,7 +50,7 @@
 -(void)doRequest:(NSDictionary*)jsonDictionary{
     OXPushManager* oxPushManager = [[OXPushManager alloc] init];
     [oxPushManager setDevicePushToken:[[NSUserDefaults standardUserDefaults] stringForKey:@"deviceToken"]];
-    [oxPushManager onOxPushApproveRequest:jsonDictionary isDecline:NO callback:^(NSDictionary *result,NSError *error){
+    [oxPushManager onOxPushApproveRequest:jsonDictionary isDecline:NO isSecureClick:isSecureClick callback:^(NSDictionary *result,NSError *error){
         if (error) {
             [self showAlertViewWithTitle:@"Info" andMessage:[NSString stringWithFormat:@"%@ failed", alertMessage]];
             NSLog(@"%@", [NSString stringWithFormat:@"%@ failed", alertMessage]);
@@ -57,7 +61,13 @@
         }
     }];
 }
-    
+
+-(void)initBLE:(NSData*)valueData{
+    scanner = [[PeripheralScanner alloc] init];
+    scanner.valueForWrite = valueData;
+    [scanner start];
+}
+
 -(void)initQRScanner{
     // Create the reader object
     QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];

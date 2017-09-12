@@ -17,7 +17,11 @@
     RawMessageCodec* codec;
 }
 
--(EnrollmentResponse*)registerRequest:(EnrollmentRequest*)request isDecline:(BOOL)isDecline;
--(AuthenticateResponse*)autenticate:(AuthenticateRequest*)request;
+typedef void(^SecureClickCompletionHandler)(EnrollmentResponse *response, NSError *error);
+typedef void(^SecureClickAuthCompletionHandler)(AuthenticateResponse *response, NSError *error);
+
+-(void)registerRequest:(EnrollmentRequest*)request isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick callback:(SecureClickCompletionHandler)handler;
+
+-(void)autenticate:(AuthenticateRequest*)request isSecureClick:(BOOL)isSecureClick userName:(NSString*)userName callback:(SecureClickAuthCompletionHandler)handler;
 
 @end

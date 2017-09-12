@@ -19,8 +19,8 @@
     return instance;
 }
     
-- (NSString *)displayNameForWonderfulType:(LogState)logState {
-    switch(logState) {
+- (NSString *)displayNameForWonderfulType:(LogState)LogState {
+    switch(LogState) {
         case LOGIN_SUCCESS:
             return @"LOGIN_SUCCESS";
         case LOGIN_FAILED:
@@ -36,27 +36,27 @@
         case UNKNOWN_ERROR:
             return @"UNKNOWN_ERROR";
     }
-    [NSException raise:NSInvalidArgumentException format:@"The given format type number, %ld, is not known.", logState];
+    [NSException raise:NSInvalidArgumentException format:@"The given format type number, %ld, is not known.", (unsigned long)logState];
     return nil; // Keep the compiler happy - does not understand above line never returns!
 }
 
-- (LogState)displayTypeForWonderfulName:(NSString *)logState {
-    if ([logState isEqualToString:@"LOGIN_SUCCESS"]) {
+- (LogState)displayTypeForWonderfulName:(NSString *)LogState {
+    if ([LogState isEqualToString:@"LOGIN_SUCCESS"]) {
         return LOGIN_SUCCESS;
     }
-    if ([logState isEqualToString:@"LOGIN_FAILED"]) {
+    if ([LogState isEqualToString:@"LOGIN_FAILED"]) {
         return LOGIN_FAILED;
     }
-    if ([logState isEqualToString:@"LOGIN_DECLINED"]) {
+    if ([LogState isEqualToString:@"LOGIN_DECLINED"]) {
         return LOGIN_DECLINED;
     }
-    if ([logState isEqualToString:@"ENROLL_SUCCESS"]) {
+    if ([LogState isEqualToString:@"ENROLL_SUCCESS"]) {
         return ENROLL_SUCCESS;
     }
-    if ([logState isEqualToString:@"ENROLL_FAILED"]) {
+    if ([LogState isEqualToString:@"ENROLL_FAILED"]) {
         return ENROLL_FAILED;
     }
-    if ([logState isEqualToString:@"ENROLL_DECLINED"]) {
+    if ([LogState isEqualToString:@"ENROLL_DECLINED"]) {
         return ENROLL_DECLINED;
     }
     return UNKNOWN_ERROR;
