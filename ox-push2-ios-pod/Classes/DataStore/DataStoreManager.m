@@ -9,6 +9,8 @@
 #import "DataStoreManager.h"
 #import <CoreData/CoreData.h>
 #import "UserLoginInfo.h"
+#import "FDKeychain.h"
+#import "KeychainWrapper.h"
 
 #define KEY_ENTITIES @"TokenEntities"
 #define USER_INFO_ENTITIES @"LoginInfoEntities"
@@ -47,6 +49,22 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:archiveArray forKey:KEY_ENTITIES];
+    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:archiveArray];
+    //Save token entities for KeyChain
+//    KeychainWrapper* keyChain = [[KeychainWrapper alloc] init];
+//    [keyChain setValue:arrayData forKey:@"token"];
+    /*
+    NSError *error = nil;
+    
+    [FDKeychain saveItem: archiveArray
+                  forKey: KEY_ENTITIES
+              forService: @"ox-push3"
+           inAccessGroup: @"com.ios.gluu.com.1414degrees.moonunit"
+       withAccessibility: FDKeychainAccessibleAfterFirstUnlock
+                   error: &error];
+    
+    NSLog(@"ERROR - %@", error.description);
+     */
 }
     
 -(NSArray*)getTokenEntitiesByID:(NSString*)keyID userName:(NSString*)userName{
@@ -66,6 +84,16 @@
     
 -(NSArray*)getTokenEntities{
     NSMutableArray* tokens = [[NSMutableArray alloc] init];
+    /*
+    NSError *error = nil;
+    
+    NSArray* tokenArray = [FDKeychain itemForKey: KEY_ENTITIES
+              forService: @"ox-push3"
+           inAccessGroup: @"com.ios.gluu.com.1414degrees.moonunit"
+                   error: &error];
+    
+    NSLog(@"ERROR - %@", error.description);
+     */
     NSArray* tokenArray = [[NSUserDefaults standardUserDefaults] valueForKey:KEY_ENTITIES];
     if (tokenArray != nil){
         for (NSData* tokenData in tokenArray){

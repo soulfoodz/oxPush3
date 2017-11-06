@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString* app;
 @property (strong, nonatomic) NSString* issuer;
 @property (strong, nonatomic) NSString* state;
+@property (strong, nonatomic) NSString* enrollment;
 @property (strong, nonatomic) NSString* method;
 @property (strong, nonatomic) NSString* created;
 

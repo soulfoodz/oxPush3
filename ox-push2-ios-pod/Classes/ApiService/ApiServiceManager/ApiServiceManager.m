@@ -9,6 +9,12 @@
 #import "ApiServiceManager.h"
 #import "ApiService.h"
 
+#define APP @"app"
+#define STATE @"state"
+#define ENROLLMENT @"enrollment"
+#define ISSUER @"issuer"
+#define CREATED @"created"
+
 @implementation ApiServiceManager
 
 + (instancetype) sharedInstance {
@@ -25,10 +31,10 @@
     NSString* discoveryUrl = [oxRequest issuer];
     discoveryUrl = [discoveryUrl stringByAppendingString:@"/.well-known/fido-u2f-configuration"];
     NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[oxRequest app] forKey:@"app"];
-    [parameters setObject:[oxRequest state] forKey:@"state"];
-    [parameters setObject:[oxRequest created] forKey:@"created"];
-    [parameters setObject:[oxRequest issuer] forKey:@"issuer"];
+    [parameters setObject:[oxRequest app] forKey:APP];
+    [parameters setObject:[oxRequest state] forKey:STATE];
+    [parameters setObject:[oxRequest created] forKey:CREATED];
+    [parameters setObject:[oxRequest issuer] forKey:ISSUER];
     if ([method isEqualToString:@"GET"]){
         [self doGETUrl:discoveryUrl :parameters callback:handler];
     } else if ([method isEqualToString:@"POST"]){

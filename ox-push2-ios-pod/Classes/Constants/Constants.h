@@ -80,4 +80,11 @@
 #define LOCKED_ATTEMPTS_COUNT @"locked_attempts_count"
 #define IS_APP_LOCKED @"app_locked"
 
+#define APP @"app"
+#define STATE @"state"
+#define ENROLLMENT @"enrollment"
+#define ISSUER @"issuer"
+#define USERNAME @"username"
+#define METHOD @"method"
+
 #endif /* Constants_h */

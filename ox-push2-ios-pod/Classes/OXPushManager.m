@@ -25,23 +25,22 @@
 @implementation OXPushManager
 
 -(void)onOxPushApproveRequest:(NSDictionary*)parameters isDecline:(BOOL)isDecline isSecureClick:(BOOL)isSecureClick callback:(RequestCompletionHandler)handler{
-    NSString* app = [parameters objectForKey:@"app"];
-    NSString* state = [parameters objectForKey:@"state"];
+    NSString* app = [parameters objectForKey:APP];
+    NSString* state = [parameters objectForKey:STATE];
+    NSString* enrollment = [parameters objectForKey:ENROLLMENT];
     NSString* created = [NSString stringWithFormat:@"%@", [NSDate date]];//[parameters objectForKey:@"created"];
-    NSString* issuer = [parameters objectForKey:@"issuer"];
-    NSString* username = [parameters objectForKey:@"username"];
-    NSString* method = [parameters objectForKey:@"method"];
+    NSString* issuer = [parameters objectForKey:ISSUER];
+    NSString* username = [parameters objectForKey:USERNAME];
+    NSString* method = [parameters objectForKey:METHOD];
     oneStep = username == nil ? YES : NO;
-    if (app != nil && state != nil && created != nil && issuer != nil){
-        OxPush2Request* oxRequest = [[OxPush2Request alloc] initWithName:username app:app issuer:issuer state:state method:@"GET" created:created];
+    if (app != nil && created != nil && issuer != nil){
+        OxPush2Request* oxRequest = [[OxPush2Request alloc] initWithName:username app:app issuer:issuer state:state == nil ? @"" : state method:@"GET" created:created];
+        oxRequest.enrollment = enrollment == nil ? @"" : enrollment;
         NSMutableDictionary* parameters = [[NSMutableDictionary alloc] init];
         [parameters setObject:[oxRequest app] forKey:@"application"];
         if (!oneStep){
             [parameters setObject:[oxRequest userName] forKey:@"username"];
         }
-//        NSString* created = [parameters objectForKey:@"created"];
-//        [[UserLoginInfo sharedInstance] setIssuer:issuer];
-//        [[UserLoginInfo sharedInstance] setCreated:created];
         [[ApiServiceManager sharedInstance] doRequest:oxRequest callback:^(NSDictionary *result,NSError *error){
             if (error) {
                 [self handleError:error];
@@ -52,13 +51,17 @@
                 NSString* authenticationEndpoint = [result objectForKey:@"authentication_endpoint"];
                 NSString* registrationEndpoint = [result objectForKey:@"registration_endpoint"];
                 
-                //Check is old or new version of server
-                NSString* state_key = [authenticationEndpoint containsString:@"seam"] ? @"session_state" : @"session_id";
-                [parameters setObject:[oxRequest state] forKey:state_key];
+                //Check if we're using cred manager - in that case "state"== null and we should use "enrollment" parameter
+                if (![[oxRequest enrollment] isEqualToString:@""]){
+                    [parameters setObject:[oxRequest enrollment] forKey:@"enrollment_code"];
+                } else {
+                    //Check is old or new version of server
+                    NSString* state_key = [authenticationEndpoint containsString:@"seam"] ? @"session_state" : @"session_id";
+                    [parameters setObject:[oxRequest state] forKey:state_key];
+                }
                 
                 U2fMetaData* u2fMetaData = [[U2fMetaData alloc] initWithVersion:version issuer:issuer authenticationEndpoint:authenticationEndpoint registrationEndpoint:registrationEndpoint];
                 // Next step - get exist keys from database
-//                NSString* keyID = [NSString stringWithFormat:@"%@%@", [oxRequest issuer], [oxRequest app]];
                 NSString* keyID = [oxRequest app];
                 NSArray* tokenEntities = [[DataStoreManager sharedInstance] getTokenEntitiesByID:keyID userName:username];
                 NSString* u2fEndpoint = [[NSString alloc] init];
@@ -77,7 +80,6 @@
                             [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
                                 if (error) {
                                     handler(nil , error);
-//                                    [[DataStoreManager sharedInstance] deleteTokenEntitiesByID:@""];
                                 } else {
                                     // Success
                                     isResult = YES;
@@ -101,7 +103,6 @@
                         [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
                             if (error) {
                                 handler(nil , error);
-                                //                                    [[DataStoreManager sharedInstance] deleteTokenEntitiesByID:@""];
                             } else {
                                 // Success
                                 isResult = YES;

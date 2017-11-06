@@ -100,10 +100,18 @@ Byte CHECK_ONLY = 0x07;
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UNSUPPORTED_VERSION object:nil];
         }
         NSData* controlData = [[NSData alloc] initWithBytes:&USER_PRESENCE_SIGN length:1];
+        __block BOOL isSucess = NO;
         [_u2FKey autenticate:[[AuthenticateRequest alloc] initWithVersion:version control:controlData challenge:challenge application:appParam keyHandle:keyHandle] isSecureClick:isSecureClick userName: userName callback: ^(AuthenticateResponse *response, NSError *error){
-            TokenResponse* tokenResponse = [self makeAuthenticationResponse:response authenticatedChallenge:challenge isDecline:isDecline isSecureClick: isSecureClick authRequest:authRequest baseUrl:baseUrl];
-            handler(tokenResponse, nil);
+            if (!error){
+                TokenResponse* tokenResponse = [self makeAuthenticationResponse:response authenticatedChallenge:challenge isDecline:isDecline isSecureClick: isSecureClick authRequest:authRequest baseUrl:baseUrl];
+                handler(tokenResponse, nil);
+                isSucess = YES;
+            } else {
+                handler(nil, error);
+                isSucess = NO;
+            }
         }];
+        if (isSucess){break;}
     }
     
 }
