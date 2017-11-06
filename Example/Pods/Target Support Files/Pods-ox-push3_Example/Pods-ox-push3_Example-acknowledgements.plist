@@ -14,7 +14,7 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>Copyright (c) 2011&#8211;2016 Alamofire Software Foundation (http://alamofire.org/)
+			<string>Copyright (c) 2011–2016 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>AFNetworking</string>
 			<key>Type</key>
@@ -48,6 +50,8 @@ The CocoaAsyncSocket project is in the public domain.
 The original TCP version (AsyncSocket) was created by Dustin Voss in January 2003.
 Updated and maintained by Deusty LLC and the Apple development community.
 </string>
+			<key>License</key>
+			<string>public domain</string>
 			<key>Title</key>
 			<string>CocoaAsyncSocket</string>
 			<key>Type</key>
@@ -258,6 +262,8 @@ Updated and maintained by Deusty LLC and the Apple development community.
    limitations under the License.
 
 </string>
+			<key>License</key>
+			<string>Apache</string>
 			<key>Title</key>
 			<string>NHNetworkTime</string>
 			<key>Type</key>
@@ -467,6 +473,8 @@ Updated and maintained by Deusty LLC and the Apple development community.
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.</string>
+			<key>License</key>
+			<string>Apache License, Version 2.0</string>
 			<key>Title</key>
 			<string>NSHash</string>
 			<key>Type</key>
@@ -495,6 +503,8 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>QRCodeReaderViewController</string>
 			<key>Type</key>
@@ -521,6 +531,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.</string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>SCLAlertView-Objective-C</string>
 			<key>Type</key>
@@ -550,6 +562,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </string>
+			<key>License</key>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>ox-push3</string>
 			<key>Type</key>

@@ -18,7 +18,7 @@ PODS:
   - NHNetworkTime (1.6):
     - CocoaAsyncSocket (<= 7.4.1)
   - NSHash (1.1.0)
-  - ox-push3 (0.1.9):
+  - ox-push3 (0.2.0):
     - AFNetworking
     - NHNetworkTime
     - NSHash
@@ -42,10 +42,10 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 7cbf214b27f8e7f7574db6a3fd96352ffaed433d
   NHNetworkTime: d4a05f26fc3676a722db38724adda7dba7321ba1
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
-  ox-push3: 07ac5f86fe6d6d470611930435084f152848edfa
+  ox-push3: 045a1edfba4cb3e6d1e12b2039d859d98c31eeac
   QRCodeReaderViewController: e8f27d035b3e72b1d4b1c61ff66458287e3be0ff
   SCLAlertView-Objective-C: a2b8b09b8ce5fe14c233ecaa09c02be582c6389a
 
 PODFILE CHECKSUM: 7cb11a0f8305c6819c45b692428b7263cb0919e2
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.4.0.beta.2

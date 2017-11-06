@@ -11,12 +11,13 @@
 #import "TokenEntity.h"
 #import "SCLAlertView.h"
 #import "DataStoreManager.h"
-#import "ox-push3-swift.h"
+//#import "ox-push3-swift.h"
+#import "ox-push3_Example-Bridging-Header.h"
 
 @interface gluuViewController (){
 
     NSString* alertMessage;
-    PeripheralScanner* scanner;
+//    PeripheralScanner* scanner;
     BOOL isSecureClick;
 }
 
@@ -63,9 +64,10 @@
 }
 
 -(void)initBLE:(NSData*)valueData{
-    scanner = [[PeripheralScanner alloc] init];
-    scanner.valueForWrite = valueData;
-    [scanner start];
+    //Commented out at the moment - no need BLE u2f implementation right now
+//    scanner = [[PeripheralScanner alloc] init];
+//    scanner.valueForWrite = valueData;
+//    [scanner start];
 }
 
 -(void)initQRScanner{

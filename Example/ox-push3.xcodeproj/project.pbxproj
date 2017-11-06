@@ -22,9 +22,12 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		BB79FA321E78311200AEAE58 /* CharacteristicScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB79FA2D1E78311200AEAE58 /* CharacteristicScanner.swift */; };
-		BB79FA331E78311200AEAE58 /* PeripheralScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB79FA2E1E78311200AEAE58 /* PeripheralScanner.swift */; };
-		BB79FA341E78311200AEAE58 /* ServiceScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB79FA2F1E78311200AEAE58 /* ServiceScanner.swift */; };
+		BBC10BEE1FB0A95000216309 /* CharacteristicScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC10BE91FB0A94F00216309 /* CharacteristicScanner.swift */; };
+		BBC10BEF1FB0A95000216309 /* ServiceScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC10BEA1FB0A94F00216309 /* ServiceScanner.swift */; };
+		BBC10BF01FB0A95000216309 /* PeripheralScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC10BED1FB0A95000216309 /* PeripheralScanner.swift */; };
+		BBC10BF41FB0AB6D00216309 /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC10BF21FB0AA9D00216309 /* Data+Extension.swift */; };
+		BBC10BF51FB0AB6D00216309 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC10BF31FB0AA9D00216309 /* String+Extension.swift */; };
+		BBC10BF61FB0ABE400216309 /* U2FMessageCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC10BEC1FB0A95000216309 /* U2FMessageCoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,10 +68,13 @@
 		877F0884E3BDE9AAD8CED4C5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B59A576C05479F9F279FB54B /* Pods_ox_push2_ios_pod_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ox_push2_ios_pod_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A8BAE618C462067002EFD6 /* Pods-ox-push3_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ox-push3_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ox-push3_Example/Pods-ox-push3_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		BB79FA2D1E78311200AEAE58 /* CharacteristicScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacteristicScanner.swift; sourceTree = "<group>"; };
-		BB79FA2E1E78311200AEAE58 /* PeripheralScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralScanner.swift; sourceTree = "<group>"; };
-		BB79FA2F1E78311200AEAE58 /* ServiceScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceScanner.swift; sourceTree = "<group>"; };
-		BB79FA301E78311200AEAE58 /* Super Gluu-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Super Gluu-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBC10BE81FB0A94E00216309 /* ox-push3_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ox-push3_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBC10BE91FB0A94F00216309 /* CharacteristicScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicScanner.swift; sourceTree = "<group>"; };
+		BBC10BEA1FB0A94F00216309 /* ServiceScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceScanner.swift; sourceTree = "<group>"; };
+		BBC10BEC1FB0A95000216309 /* U2FMessageCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = U2FMessageCoder.swift; sourceTree = "<group>"; };
+		BBC10BED1FB0A95000216309 /* PeripheralScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralScanner.swift; sourceTree = "<group>"; };
+		BBC10BF21FB0AA9D00216309 /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
+		BBC10BF31FB0AA9D00216309 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		D93382E6B9EA85CDB79731E4 /* Pods_ox_push3_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ox_push3_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,6 +149,7 @@
 				6003F5A6195388D20070C39A /* gluuViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				BBC10BE81FB0A94E00216309 /* ox-push3_Example-Bridging-Header.h */,
 			);
 			name = "Example for ox-push2-ios-pod";
 			path = "ox-push2-ios-pod";
@@ -191,13 +198,31 @@
 		BB79FA311E78311200AEAE58 /* BLE Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				BB79FA2D1E78311200AEAE58 /* CharacteristicScanner.swift */,
-				BB79FA2E1E78311200AEAE58 /* PeripheralScanner.swift */,
-				BB79FA2F1E78311200AEAE58 /* ServiceScanner.swift */,
-				BB79FA301E78311200AEAE58 /* Super Gluu-Bridging-Header.h */,
+				BBC10BF11FB0AA9D00216309 /* Extensions */,
+				BBC10BE91FB0A94F00216309 /* CharacteristicScanner.swift */,
+				BBC10BED1FB0A95000216309 /* PeripheralScanner.swift */,
+				BBC10BEA1FB0A94F00216309 /* ServiceScanner.swift */,
+				BBC10BEB1FB0A95000216309 /* U2FMessageCoder */,
 			);
 			name = "BLE Scanner";
 			path = "../../ox-push2-ios-pod/Classes";
+			sourceTree = "<group>";
+		};
+		BBC10BEB1FB0A95000216309 /* U2FMessageCoder */ = {
+			isa = PBXGroup;
+			children = (
+				BBC10BEC1FB0A95000216309 /* U2FMessageCoder.swift */,
+			);
+			path = U2FMessageCoder;
+			sourceTree = "<group>";
+		};
+		BBC10BF11FB0AA9D00216309 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BBC10BF21FB0AA9D00216309 /* Data+Extension.swift */,
+				BBC10BF31FB0AA9D00216309 /* String+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BD39CB601DE41C0497D7D4E7 /* Pods */ = {
@@ -216,12 +241,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "ox-push3_Example" */;
 			buildPhases = (
+				915F6CF9270B8EA6FAF1145E /* [CP] Check Pods Manifest.lock */,
 				3DEA91C1ECBDE682CB760BB3 /* 📦 Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				F28FA9F6DC4F2EC8AA9A4612 /* 📦 Embed Pods Frameworks */,
 				BB978E7EB4BC1B3E278D85C5 /* 📦 Copy Pods Resources */,
+				C8C843744F2245B4D2D85221 /* [CP] Embed Pods Frameworks */,
+				96A1BF7579F796A82F4C5C5D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,8 +289,8 @@
 				ORGANIZATIONNAME = NazarYavornytskyy;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 2H6XMULB5Z;
-						LastSwiftMigration = 0820;
+						DevelopmentTeam = XV6595989B;
+						LastSwiftMigration = 0900;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -325,6 +353,39 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		915F6CF9270B8EA6FAF1145E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ox-push3_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96A1BF7579F796A82F4C5C5D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ox-push3_Example/Pods-ox-push3_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BB978E7EB4BC1B3E278D85C5 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,6 +399,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ox-push3_Example/Pods-ox-push3_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8C843744F2245B4D2D85221 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ox-push3_Example/Pods-ox-push3_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/NHNetworkTime/NHNetworkTime.framework",
+				"${BUILT_PRODUCTS_DIR}/NSHash/NSHash.framework",
+				"${BUILT_PRODUCTS_DIR}/QRCodeReaderViewController/QRCodeReaderViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView-Objective-C/SCLAlertView_Objective_C.framework",
+				"${BUILT_PRODUCTS_DIR}/ox-push3/ox_push3.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NHNetworkTime.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QRCodeReaderViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView_Objective_C.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ox_push3.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ox-push3_Example/Pods-ox-push3_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F28FA9F6DC4F2EC8AA9A4612 /* 📦 Embed Pods Frameworks */ = {
@@ -362,11 +453,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC10BF61FB0ABE400216309 /* U2FMessageCoder.swift in Sources */,
+				BBC10BF41FB0AB6D00216309 /* Data+Extension.swift in Sources */,
+				BBC10BF51FB0AB6D00216309 /* String+Extension.swift in Sources */,
+				BBC10BF01FB0A95000216309 /* PeripheralScanner.swift in Sources */,
 				6003F59E195388D20070C39A /* gluuAppDelegate.m in Sources */,
-				BB79FA321E78311200AEAE58 /* CharacteristicScanner.swift in Sources */,
-				BB79FA331E78311200AEAE58 /* PeripheralScanner.swift in Sources */,
+				BBC10BEF1FB0A95000216309 /* ServiceScanner.swift in Sources */,
 				6003F5A7195388D20070C39A /* gluuViewController.m in Sources */,
-				BB79FA341E78311200AEAE58 /* ServiceScanner.swift in Sources */,
+				BBC10BEE1FB0A95000216309 /* CharacteristicScanner.swift in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,14 +582,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 2H6XMULB5Z;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = XV6595989B;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ox-push2-ios-pod/ox-push3-Prefix.pch";
 				INFOPLIST_FILE = "ox-push2-ios-pod/ox-push3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.ox-push3-Example.ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ox-push2-ios-pod/ox-push3_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -507,14 +605,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 2H6XMULB5Z;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = XV6595989B;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ox-push2-ios-pod/ox-push3-Prefix.pch";
 				INFOPLIST_FILE = "ox-push2-ios-pod/ox-push3-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.ox-push3-Example.ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ox-push2-ios-pod/ox-push3_Example-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};

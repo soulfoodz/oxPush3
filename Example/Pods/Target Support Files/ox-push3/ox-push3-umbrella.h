@@ -1,4 +1,14 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#else
+#ifndef FOUNDATION_EXPORT
+#if defined(__cplusplus)
+#define FOUNDATION_EXPORT extern "C"
+#else
+#define FOUNDATION_EXPORT extern
+#endif
+#endif
+#endif
 
 #import "ApiService.h"
 #import "ApiServiceManager.h"
@@ -24,6 +34,8 @@
 #import "NSString+URLEncode.h"
 #import "GMEllipticCurveCrypto+hash.h"
 #import "GMEllipticCurveCrypto.h"
+#import "FDKeychain.h"
+#import "KeychainWrapper.h"
 
 FOUNDATION_EXPORT double ox_push3VersionNumber;
 FOUNDATION_EXPORT const unsigned char ox_push3VersionString[];
