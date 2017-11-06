@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ox-push3'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'ox-push3 is an open source mobile two-factor authentication application'
 
 # This description is used to generate tags and improve search results.
