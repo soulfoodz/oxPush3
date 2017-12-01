@@ -2,5 +2,18 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="greenColor">#1ab26b</color>
+    <color name="grayColorLight">#efeff4</color>
+    <color name="grayColorTinLight">#dddddd</color>
+    <color name="grayColor">#919191</color>
+    <color name="whiteColor">#ffffff</color>
+    <color name="backgroundColor">#f3f3f3</color>
+    <color name="redColor">#FF0000</color>
+    <color name="blackColor">#555555</color>
+    <color name="navyBlueColor">#143642</color>
+    <!--For fingerprint dialog-->
+    <color name="warning_color">#f4511e</color>
+    <color name="hint_color">#42000000</color>
+    <color name="success_color">#009688</color>
 </resources>

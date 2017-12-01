@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:passcodeView="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/darker_gray">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/pin_code_title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/close"
+            android:id="@+id/close_button"
+            android:layout_alignTop="@+id/pin_code_title"
+            android:layout_alignRight="@+id/pin_code_title"
+            android:layout_alignEnd="@+id/pin_code_title"
+            android:layout_gravity="right"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="247dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp" />
+    </RelativeLayout>
+
+    <com.mhk.android.passcodeview.PasscodeView
+        android:id="@+id/pin_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        passcodeView:numDigits="4"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/topLayout"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="You have 5 attempts left"
+        android:id="@+id/attemptsLabel"
+        android:textColor="@color/greenColor"
+        android:layout_below="@+id/pin_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>

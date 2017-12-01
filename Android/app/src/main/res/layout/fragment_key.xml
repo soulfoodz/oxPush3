@@ -1,40 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:orientation="horizontal"
-    android:weightSum="1">
+<com.chauthai.swipereveallayout.SwipeRevealLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="10dp"
+    app:dragEdge="right"
+    app:mode="normal">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/imageView"
-        android:src="@mipmap/key_icon"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp" />
+    <FrameLayout
+        android:id="@+id/swipe_menu_layout"
+        android:layout_width="180dp"
+        android:layout_height="70dp"
+        android:background="@android:color/transparent"
+        android:weightSum="1">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/swipe_show_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#c0c0c0">
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="keyhandleName"
-            android:textSize="18dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/view_action"
+                android:layout_centerInParent="true"/>
 
-        <TextView
-            android:id="@+id/created_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="createdDate"
-            android:textSize="10dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp" />
-    </LinearLayout>
+        </RelativeLayout>
 
-</LinearLayout>
+        <RelativeLayout
+            android:id="@+id/swipe_rename_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#1ab26b"
+            android:layout_marginLeft="60dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rename_action"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/swipe_delete_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#f6000c"
+            android:layout_marginLeft="120dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_action"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <LinearLayout
+            android:id="@+id/key_main_view"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="@color/whiteColor">
+
+            <ImageView
+                android:id="@+id/key_imageView"
+                android:layout_width="25dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/gluu_icon" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/contentKey"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="keyhandleName"
+                    android:textColor="@color/blackColor"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/created_dateKey"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="createdDate"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

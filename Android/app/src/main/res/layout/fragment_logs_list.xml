@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#dcd9d9">
+
+    <include
+        android:id="@+id/actionBarSettings"
+        android:layout_width="fill_parent"
+        android:layout_height="65dp"
+        layout="@layout/custom_action_bar" />
+
+    <ListView
+        android:id="@+id/logs_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="75dp"
+        android:background="@android:color/white"
+        android:divider="@color/grayColorLight"
+        android:dividerHeight="3px"
+        android:scrollbars="none" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/noLogs"
+        android:id="@+id/noLogs_textView"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/selectAllView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/backgroundColor">
+    <Button
+        android:id="@+id/selectAllButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textAllCaps="false"
+        android:textSize="18dp"
+        android:background="@android:color/transparent"
+        android:text="Select All"/>
+    </LinearLayout>
+
+</RelativeLayout>
