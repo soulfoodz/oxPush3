@@ -45,23 +45,23 @@
             if (error) {
                 [self handleError:error];
             } else {
-                // Success getting U2fMetaData
+                    // Success getting U2fMetaData
                 NSString* version = [result objectForKey:@"version"];
                 NSString* issuer = [result objectForKey:@"issuer"];
                 NSString* authenticationEndpoint = [result objectForKey:@"authentication_endpoint"];
                 NSString* registrationEndpoint = [result objectForKey:@"registration_endpoint"];
                 
-                //Check if we're using cred manager - in that case "state"== null and we should use "enrollment" parameter
+                    //Check if we're using cred manager - in that case "state"== null and we should use "enrollment" parameter
                 if (![[oxRequest enrollment] isEqualToString:@""]){
                     [parameters setObject:[oxRequest enrollment] forKey:@"enrollment_code"];
                 } else {
-                    //Check is old or new version of server
+                        //Check is old or new version of server
                     NSString* state_key = [authenticationEndpoint containsString:@"seam"] ? @"session_state" : @"session_id";
                     [parameters setObject:[oxRequest state] forKey:state_key];
                 }
                 
                 U2fMetaData* u2fMetaData = [[U2fMetaData alloc] initWithVersion:version issuer:issuer authenticationEndpoint:authenticationEndpoint registrationEndpoint:registrationEndpoint];
-                // Next step - get exist keys from database
+                    // Next step - get exist keys from database
                 NSString* keyID = [oxRequest app];
                 NSArray* tokenEntities = [[DataStoreManager sharedInstance] getTokenEntitiesByID:keyID userName:username];
                 NSString* u2fEndpoint = [[NSString alloc] init];
@@ -71,61 +71,48 @@
                 } else {//authentication
                     u2fEndpoint = [u2fMetaData authenticationEndpoint];
                 }
+                
                 if (!oneStep && !isEnroll){
                     __block BOOL isResult = NO;
-                    for (TokenEntity* tokenEntity in tokenEntities){
+                    
+                    TokenEntity *tokenEntity;
+                    if (tokenEntities.count > 0) {
+                        tokenEntity = tokenEntities[0];
+                        
                         NSString* kHandle = tokenEntity->keyHandle;
                         if (kHandle != nil){
                             [parameters setObject:kHandle forKey:@"keyhandle"];
-                            [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
-                                if (error) {
-                                    handler(nil , error);
-                                } else {
-                                    // Success
-                                    isResult = YES;
-                                    [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick: isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
-                                        if (error) {
-                                            handler(nil , error);
-                                            return;
-                                        } else {
-                                            //Success
-                                            handler(result ,nil);
-                                        }
-                                    }];
-                                }
-                            }];
-                            if (isResult)break;
-                        } else{
-                            break;
                         }
                     }
-                    if (isSecureClick){
-                        [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
-                            if (error) {
-                                handler(nil , error);
-                            } else {
+                    
+                    [[ApiServiceManager sharedInstance] doGETUrl:u2fEndpoint :parameters callback:^(NSDictionary *result,NSError *error){
+                        if (error) {
+                            handler(nil , error);
+                        } else {
                                 // Success
-                                isResult = YES;
-                                [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick: isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
-                                    if (error) {
-                                        handler(nil , error);
-                                    } else {
+                            isResult = YES;
+                            [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick: isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
+                                if (error) {
+                                    handler(nil , error);
+                                    return;
+                                } else {
                                         //Success
-                                        handler(result ,nil);
-                                    }
-                                }];
-                            }
-                        }];
-                    }
+                                    handler(result ,nil);
+                                }
+                            }];
+                        }
+                    }];
                 } else {
+                    
                     if (!isDecline){
                         [self postNotificationEnrollementStarting];
                     }
+                    
                     [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick:isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
                         if (error) {
                             handler(nil , error);
                         } else {
-                            //Success
+                                //Success
                             handler(result ,nil);
                         }
                     }];
