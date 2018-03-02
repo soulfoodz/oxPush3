@@ -33,7 +33,7 @@
     NSMutableArray* tokenArrayUserDef = [[NSUserDefaults standardUserDefaults] valueForKey:KEY_ENTITIES];
     if (tokenArrayUserDef != nil){
         tokenArray = [[NSMutableArray alloc] initWithArray: tokenArrayUserDef];
-        [tokenArray addObject:tokenEntity];
+        [tokenArray insertObject:tokenEntity atIndex:0];
     } else {
         tokenArray = [[NSMutableArray alloc] initWithObjects:tokenEntity, nil];
     }
@@ -49,7 +49,11 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:archiveArray forKey:KEY_ENTITIES];
+    
+    
     NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:archiveArray];
+    
+    
     //Save token entities for KeyChain
 //    KeychainWrapper* keyChain = [[KeychainWrapper alloc] init];
 //    [keyChain setValue:arrayData forKey:@"token"];
