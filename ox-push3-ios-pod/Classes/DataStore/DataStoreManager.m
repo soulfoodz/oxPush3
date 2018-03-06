@@ -112,13 +112,15 @@
     NSMutableArray* tokenArray = [[NSUserDefaults standardUserDefaults] valueForKey:KEY_ENTITIES];
     NSMutableArray* newTokenArray = [[NSMutableArray alloc] initWithArray:tokenArray];
     if (tokenArray != nil){
+        NSUInteger index = 0;
         for (NSData* tokenData in tokenArray){
             TokenEntity* token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
             if ([token->ID isEqualToString:keyID] && [token->userName isEqualToString:userName]) {
                 TokenEntity* newToken = token;
                 [newTokenArray removeObject:tokenData];
                 newToken->keyName = newName;
-                [newTokenArray addObject:newToken];
+                [newTokenArray insertObject:newToken atIndex:index];
+                index++;
             }
         }
     }
