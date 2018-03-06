@@ -28,6 +28,8 @@
 -(void)deleteLog:(UserLoginInfo*) log;
 -(BOOL)deleteAllLogs;
 
+- (BOOL)isUniqueTokenName:(NSString *)tokenName
+
 -(void)setTokenEntitiesNameByID:(NSString*)keyID userName:(NSString*)userName newName:(NSString*)newName;
 
 @end

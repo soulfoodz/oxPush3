@@ -70,6 +70,23 @@
     NSLog(@"ERROR - %@", error.description);
      */
 }
+
+- (BOOL)isUniqueTokenName:(NSString *)tokenName {
+    NSMutableArray* tokenArray = [[NSUserDefaults standardUserDefaults] valueForKey:KEY_ENTITIES];
+    
+    if (tokenArray != nil){
+        for (NSData* tokenData in tokenArray) {
+            TokenEntity* token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
+            if ([token->keyName isEqualToString:tokenName] == true) {
+                return false;
+            } else {
+                continue;
+            }
+        }
+    }
+    
+    return true;
+}
     
 -(NSArray*)getTokenEntitiesByID:(NSString*)keyID userName:(NSString*)userName{
     NSMutableArray* tokens = [[NSMutableArray alloc] init];
