@@ -111,12 +111,12 @@ int keyHandleLength = 64;
         tokenEntity = [tokenEntities objectAtIndex:0];
     } else {
         //No token(s) found
-    }
-    if (tokenEntity != nil){
         
-    } else {
-        //There is no keyPair
+        NSError *err = [[NSError alloc] init];
+        handler(nil, err);
+        return;
     }
+
     NSData* applicationSha256 = [[application SHA256] dataUsingEncoding:NSUTF8StringEncoding];
     NSData* challengeSha256 = [[challenge SHA256] dataUsingEncoding:NSUTF8StringEncoding];
     
