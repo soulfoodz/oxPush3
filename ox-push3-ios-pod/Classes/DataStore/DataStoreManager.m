@@ -279,7 +279,7 @@
     NSMutableArray* newlogs = [[NSMutableArray alloc] init];
     for (NSData* logsData in logs){
         UserLoginInfo* info = (UserLoginInfo*)[NSKeyedUnarchiver unarchiveObjectWithData:logsData];
-        if (![info->created isEqualToString:log->created]){
+        if (![info.created isEqualToString:log.created]){
             [newlogs addObject:info];
         }
     }
