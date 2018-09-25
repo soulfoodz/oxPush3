@@ -165,7 +165,7 @@
 -(void)handleTokenResponse:(TokenResponse*) tokenResponse baseUrl:(NSString*)baseUrl isDecline:(BOOL)isDecline callback:(RequestCompletionHandler)handler {
     if (tokenResponse == nil){
         handler(nil , nil);
-        [UserLoginInfo sharedInstance]->logState = LOGIN_FAILED;
+        [UserLoginInfo sharedInstance].logState = LOGIN_FAILED;
         [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_FAILED object:nil];
     } else {

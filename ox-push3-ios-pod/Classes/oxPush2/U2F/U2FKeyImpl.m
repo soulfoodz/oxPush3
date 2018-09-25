@@ -65,10 +65,10 @@ int keyHandleLength = 64;
         newTokenEntity->application = application;
         newTokenEntity->issuer = [enrollmentRequest issuer];
         newTokenEntity->keyHandle = [keyHandle base64EncodedString];
-        newTokenEntity->userName = [UserLoginInfo sharedInstance]->userName;
-        newTokenEntity->pairingTime = [UserLoginInfo sharedInstance]->created;
-        newTokenEntity->authenticationMode = [UserLoginInfo sharedInstance]->authenticationMode;
-        newTokenEntity->authenticationType = [UserLoginInfo sharedInstance]->authenticationType;
+        newTokenEntity->userName = [UserLoginInfo sharedInstance].userName;
+        newTokenEntity->pairingTime = [UserLoginInfo sharedInstance].created;
+        newTokenEntity->authenticationMode = [UserLoginInfo sharedInstance].authenticationMode;
+        newTokenEntity->authenticationType = [UserLoginInfo sharedInstance].authenticationType;
         if (!isSecureClick){
             newTokenEntity->publicKey = crypto.publicKeyBase64;
             newTokenEntity->privateKey = crypto.privateKeyBase64;

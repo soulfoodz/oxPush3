@@ -114,7 +114,7 @@
     NSError* error;
     
     NSData* urlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    [UserLoginInfo sharedInstance]->created = [NSString stringWithFormat:@"%@", [NSDate date]];
+    [UserLoginInfo sharedInstance].created = [NSString stringWithFormat:@"%@", [NSDate date]];
     if (response != nil && [response statusCode] >=200 && [response statusCode] <300){
         NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&error];
         handler(jsonData, nil);
@@ -122,22 +122,22 @@
         {
             if (isDecline){
                 if (isEnroll){
-                    [UserLoginInfo sharedInstance]->logState = ENROLL_DECLINED;
-                    [UserLoginInfo sharedInstance]->errorMessage = @"Enrol was declined";
+                    [UserLoginInfo sharedInstance].logState = ENROLL_DECLINED;
+                    [UserLoginInfo sharedInstance].errorMessage = @"Enrol was declined";
                     [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                 } else {
-                    [UserLoginInfo sharedInstance]->logState = LOGIN_DECLINED;
-                    [UserLoginInfo sharedInstance]->errorMessage = @"Login was declined";
+                    [UserLoginInfo sharedInstance].logState = LOGIN_DECLINED;
+                    [UserLoginInfo sharedInstance].errorMessage = @"Login was declined";
                     [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                 }
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DECLINE_SUCCESS object:urlData];
             } else {
                 if (isEnroll){
-                    [UserLoginInfo sharedInstance]->logState = ENROLL_SUCCESS;
+                    [UserLoginInfo sharedInstance].logState = ENROLL_SUCCESS;
                     [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REGISTRATION_SUCCESS object:urlData];
                 } else {
-                    [UserLoginInfo sharedInstance]->logState = LOGIN_SUCCESS;
+                    [UserLoginInfo sharedInstance].logState = LOGIN_SUCCESS;
                     [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_SUCCESS object:urlData];
                 }
@@ -145,11 +145,11 @@
         }else{
             handler(nil, error);
                 if (isEnroll){
-                    [UserLoginInfo sharedInstance]->logState = ENROLL_FAILED;
+                    [UserLoginInfo sharedInstance].logState = ENROLL_FAILED;
                     [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REGISTRATION_FAILED object:nil];
                 } else {
-                    [UserLoginInfo sharedInstance]->logState = LOGIN_FAILED;
+                    [UserLoginInfo sharedInstance].logState = LOGIN_FAILED;
                     [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_FAILED object:nil];
                 }
@@ -178,13 +178,13 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DECLINE_FAILED object:nil];
         } else {
             if (isEnroll){
-                [UserLoginInfo sharedInstance]->logState = ENROLL_FAILED;
-                [UserLoginInfo sharedInstance]->errorMessage = errroMessage;
+                [UserLoginInfo sharedInstance].logState = ENROLL_FAILED;
+                [UserLoginInfo sharedInstance].errorMessage = errroMessage;
                 [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_REGISTRATION_FAILED object:nil];
             } else {
-                [UserLoginInfo sharedInstance]->logState = LOGIN_FAILED;
-                [UserLoginInfo sharedInstance]->errorMessage = errroMessage;
+                [UserLoginInfo sharedInstance].logState = LOGIN_FAILED;
+                [UserLoginInfo sharedInstance].errorMessage = errroMessage;
                 [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_FAILED object:nil];
             }
