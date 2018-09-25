@@ -36,7 +36,7 @@
         case UNKNOWN_ERROR:
             return @"UNKNOWN_ERROR";
     }
-    [NSException raise:NSInvalidArgumentException format:@"The given format type number, %ld, is not known.", (unsigned long)logState];
+    [NSException raise:NSInvalidArgumentException format:@"The given format type number, %ld, is not known.", (unsigned long)_logState];
     return nil; // Keep the compiler happy - does not understand above line never returns!
 }
 
@@ -74,7 +74,7 @@
         [encoder encodeObject:_authenticationType forKey:@"authenticationType"];
         [encoder encodeObject:_authenticationMode forKey:@"authenticationMode"];
         [encoder encodeObject:_locationIP forKey:@"locationIP"];
-        [encoder encodeObject:vlocationCity forKey:@"locationCity"];
+        [encoder encodeObject:_locationCity forKey:@"locationCity"];
         [encoder encodeObject:[self displayNameForWonderfulType:_logState] forKey:@"logState"];
         [encoder encodeObject:_errorMessage forKey:@"errorMessage"];
     }

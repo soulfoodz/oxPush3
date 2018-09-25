@@ -72,7 +72,7 @@
                     u2fEndpoint = [u2fMetaData authenticationEndpoint];
                 }
                 
-                if (!oneStep && !isEnroll){
+                if (!self.oneStep && !isEnroll){
                     __block BOOL isResult = NO;
                     
                     TokenEntity *tokenEntity;
