@@ -67,16 +67,16 @@
 -(void)encodeWithCoder:(NSCoder *)encoder
     {
         //Encode the properties of the object
-        [encoder encodeObject:userName forKey:@"userName"];
-        [encoder encodeObject:created forKey:@"created"];
-        [encoder encodeObject:application forKey:@"application"];
-        [encoder encodeObject:issuer forKey:@"issuer"];
-        [encoder encodeObject:authenticationType forKey:@"authenticationType"];
-        [encoder encodeObject:authenticationMode forKey:@"authenticationMode"];
-        [encoder encodeObject:locationIP forKey:@"locationIP"];
-        [encoder encodeObject:locationCity forKey:@"locationCity"];
-        [encoder encodeObject:[self displayNameForWonderfulType:logState] forKey:@"logState"];
-        [encoder encodeObject:errorMessage forKey:@"errorMessage"];
+        [encoder encodeObject:_userName forKey:@"userName"];
+        [encoder encodeObject:_created forKey:@"created"];
+        [encoder encodeObject:_application forKey:@"application"];
+        [encoder encodeObject:_issuer forKey:@"issuer"];
+        [encoder encodeObject:_authenticationType forKey:@"authenticationType"];
+        [encoder encodeObject:_authenticationMode forKey:@"authenticationMode"];
+        [encoder encodeObject:_locationIP forKey:@"locationIP"];
+        [encoder encodeObject:vlocationCity forKey:@"locationCity"];
+        [encoder encodeObject:[self displayNameForWonderfulType:_logState] forKey:@"logState"];
+        [encoder encodeObject:_errorMessage forKey:@"errorMessage"];
     }
     
 -(id)initWithCoder:(NSCoder *)decoder
@@ -85,17 +85,17 @@
         if ( self != nil )
         {
             //decode the properties
-            userName = [decoder decodeObjectForKey:@"userName"];
-            created = [decoder decodeObjectForKey:@"created"];
-            application = [decoder decodeObjectForKey:@"application"];
-            issuer = [decoder decodeObjectForKey:@"issuer"];
-            authenticationType = [decoder decodeObjectForKey:@"authenticationType"];
-            authenticationMode = [decoder decodeObjectForKey:@"authenticationMode"];
-            locationIP = [decoder decodeObjectForKey:@"locationIP"];
-            locationCity = [decoder decodeObjectForKey:@"locationCity"];
-            locationCity = [decoder decodeObjectForKey:@"locationCity"];
-            logState = [self displayTypeForWonderfulName:[decoder decodeObjectForKey:@"logState"]];
-            errorMessage = [decoder decodeObjectForKey:@"errorMessage"];
+            _userName = [decoder decodeObjectForKey:@"userName"];
+            _created = [decoder decodeObjectForKey:@"created"];
+            _application = [decoder decodeObjectForKey:@"application"];
+            _issuer = [decoder decodeObjectForKey:@"issuer"];
+            _authenticationType = [decoder decodeObjectForKey:@"authenticationType"];
+            _authenticationMode = [decoder decodeObjectForKey:@"authenticationMode"];
+            _locationIP = [decoder decodeObjectForKey:@"locationIP"];
+            _locationCity = [decoder decodeObjectForKey:@"locationCity"];
+            _locationCity = [decoder decodeObjectForKey:@"locationCity"];
+            _logState = [self displayTypeForWonderfulName:[decoder decodeObjectForKey:@"logState"]];
+            _errorMessage = [decoder decodeObjectForKey:@"errorMessage"];
         }
         return self;
     }
