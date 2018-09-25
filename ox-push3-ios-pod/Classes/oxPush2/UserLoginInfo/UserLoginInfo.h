@@ -18,30 +18,18 @@ typedef NS_ENUM(NSUInteger, LogState) {
     UNKNOWN_ERROR
 };
 
-//typedef enum LogState : NSString {
-//    LOGIN_SUCCESS,
-//    LOGIN_FAILED,
-//    LOGIN_DECLINED,
-//    ENROLL_SUCCESS,
-//    ENROLL_FAILED,
-//    NROLL_DECLINED,
-//    UNKNOWN_ERROR
-//} LogState;
+@interface UserLoginInfo : NSObject
 
-@interface UserLoginInfo : NSObject{
-    @public
-    NSString* userName;
-    NSString* created;
-    NSString* application;
-    NSString* issuer;
-    NSString* authenticationType;
-    NSString* authenticationMode;
-    NSString* locationIP;
-    NSString* locationCity;
-    LogState logState;
-    NSString* errorMessage;
-    
-}
+@property NSString* userName;
+@property NSString* created;
+@property NSString* application;
+@property NSString* issuer;
+@property NSString* authenticationType;
+@property NSString* authenticationMode;
+@property NSString* locationIP;
+@property NSString* locationCity;
+@property LogState logState;
+@property NSString* errorMessage;
     
 + (instancetype) sharedInstance;
     
