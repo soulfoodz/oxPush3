@@ -12,9 +12,9 @@
 
 -(id)initWithID:(NSString*)iD privateKey:(NSString*)PrivateKey publicKey:(NSString*)PublicKey{
 
-    ID = iD;
-    privateKey = PrivateKey;
-    publicKey = PublicKey;
+    _ID = iD;
+    _privateKey = PrivateKey;
+    _publicKey = PublicKey;
     
     return self;
 }
@@ -24,18 +24,18 @@
 -(void)encodeWithCoder:(NSCoder *)encoder
     {
         //Encode the properties of the object
-        [encoder encodeObject:ID forKey:@"ID"];
-        [encoder encodeObject:application forKey:@"application"];
-        [encoder encodeObject:issuer forKey:@"issuer"];
-        [encoder encodeObject:privateKey forKey:@"privateKey"];
-        [encoder encodeObject:publicKey forKey:@"publicKey"];
-        [encoder encodeObject:keyHandle forKey:@"keyHandle"];
-        [encoder encodeObject:userName forKey:@"userName"];
-        [encoder encodeObject:pairingTime forKey:@"pairingTime"];
-        [encoder encodeObject:authenticationMode forKey:@"authenticationMode"];
-        [encoder encodeObject:authenticationType forKey:@"authenticationType"];
-        [encoder encodeObject:count forKey:@"count"];
-        [encoder encodeObject:keyName forKey:@"keyName"];
+        [encoder encodeObject:_ID forKey:@"ID"];
+        [encoder encodeObject:_application forKey:@"application"];
+        [encoder encodeObject:_issuer forKey:@"issuer"];
+        [encoder encodeObject:_privateKey forKey:@"privateKey"];
+        [encoder encodeObject:_publicKey forKey:@"publicKey"];
+        [encoder encodeObject:_keyHandle forKey:@"keyHandle"];
+        [encoder encodeObject:_userName forKey:@"userName"];
+        [encoder encodeObject:_pairingTime forKey:@"pairingTime"];
+        [encoder encodeObject:_authenticationMode forKey:@"authenticationMode"];
+        [encoder encodeObject:_authenticationType forKey:@"authenticationType"];
+        [encoder encodeObject:_count forKey:@"count"];
+        [encoder encodeObject:_keyName forKey:@"keyName"];
     }
     
 -(id)initWithCoder:(NSCoder *)decoder
@@ -44,18 +44,18 @@
         if ( self != nil )
         {
             //decode the properties
-            ID = [decoder decodeObjectForKey:@"ID"];
-            application = [decoder decodeObjectForKey:@"application"];
-            issuer = [decoder decodeObjectForKey:@"issuer"];
-            privateKey = [decoder decodeObjectForKey:@"privateKey"];
-            publicKey = [decoder decodeObjectForKey:@"publicKey"];
-            keyHandle = [decoder decodeObjectForKey:@"keyHandle"];
-            userName = [decoder decodeObjectForKey:@"userName"];
-            pairingTime = [decoder decodeObjectForKey:@"pairingTime"];
-            authenticationMode = [decoder decodeObjectForKey:@"authenticationMode"];
-            authenticationType = [decoder decodeObjectForKey:@"authenticationType"];
-            count = [decoder decodeObjectForKey:@"count"];
-            keyName = [decoder decodeObjectForKey:@"keyName"];
+            _ID = [decoder decodeObjectForKey:@"ID"];
+            _application = [decoder decodeObjectForKey:@"application"];
+            _issuer = [decoder decodeObjectForKey:@"issuer"];
+            _privateKey = [decoder decodeObjectForKey:@"privateKey"];
+            _publicKey = [decoder decodeObjectForKey:@"publicKey"];
+            _keyHandle = [decoder decodeObjectForKey:@"keyHandle"];
+            _userName = [decoder decodeObjectForKey:@"userName"];
+            _pairingTime = [decoder decodeObjectForKey:@"pairingTime"];
+            _authenticationMode = [decoder decodeObjectForKey:@"authenticationMode"];
+            _authenticationType = [decoder decodeObjectForKey:@"authenticationType"];
+            _count = [decoder decodeObjectForKey:@"count"];
+            _keyName = [decoder decodeObjectForKey:@"keyName"];
         }
         return self;
     }
