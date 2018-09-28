@@ -61,21 +61,21 @@ int keyHandleLength = 64;
         //Save new key into database
         TokenEntity* newTokenEntity = [[TokenEntity alloc] init];
         NSString* keyID = application;
-        newTokenEntity->ID = keyID;
-        newTokenEntity->application = application;
-        newTokenEntity->issuer = [enrollmentRequest issuer];
-        newTokenEntity->keyHandle = [keyHandle base64EncodedString];
-        newTokenEntity->userName = [UserLoginInfo sharedInstance].userName;
-        newTokenEntity->pairingTime = [UserLoginInfo sharedInstance].created;
-        newTokenEntity->authenticationMode = [UserLoginInfo sharedInstance].authenticationMode;
-        newTokenEntity->authenticationType = [UserLoginInfo sharedInstance].authenticationType;
+        newTokenEntity.ID = keyID;
+        newTokenEntity.application = application;
+        newTokenEntity.issuer = [enrollmentRequest issuer];
+        newTokenEntity.keyHandle = [keyHandle base64EncodedString];
+        newTokenEntity.userName = [UserLoginInfo sharedInstance].userName;
+        newTokenEntity.pairingTime = [UserLoginInfo sharedInstance].created;
+        newTokenEntity.authenticationMode = [UserLoginInfo sharedInstance].authenticationMode;
+        newTokenEntity.authenticationType = [UserLoginInfo sharedInstance].authenticationType;
         if (!isSecureClick){
-            newTokenEntity->publicKey = crypto.publicKeyBase64;
-            newTokenEntity->privateKey = crypto.privateKeyBase64;
+            newTokenEntity.publicKey = crypto.publicKeyBase64;
+            newTokenEntity.privateKey = crypto.privateKeyBase64;
             [[DataStoreManager sharedInstance] saveTokenEntity:newTokenEntity];
         } else {
-            newTokenEntity->publicKey = @"";
-            newTokenEntity->privateKey = @"";
+            newTokenEntity.publicKey = @"";
+            newTokenEntity.privateKey = @"";
             secureClickToken = newTokenEntity;
         }
         

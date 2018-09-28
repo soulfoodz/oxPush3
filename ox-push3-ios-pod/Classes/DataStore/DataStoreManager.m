@@ -77,7 +77,7 @@
     if (tokenArray != nil){
         for (NSData* tokenData in tokenArray) {
             TokenEntity* token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-            if ([token->keyName isEqualToString:tokenName] == true) {
+            if ([token.keyName isEqualToString:tokenName] == true) {
                 return false;
             } else {
                 continue;
@@ -94,7 +94,7 @@
     if (tokenArray != nil){
         for (NSData* tokenData in tokenArray){
             TokenEntity* token = (TokenEntity*)[NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-            if ([token isKindOfClass:[TokenEntity class]] && [token->ID isEqualToString:keyID] && [token->userName isEqualToString:userName]) {
+            if ([token isKindOfClass:[TokenEntity class]] && [token.ID isEqualToString:keyID] && [token.userName isEqualToString:userName]) {
                 [tokens addObject:token];
             }
         }
@@ -132,10 +132,10 @@
         NSUInteger index = 0;
         for (NSData* tokenData in tokenArray){
             TokenEntity* token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-            if ([token->ID isEqualToString:keyID] && [token->userName isEqualToString:userName]) {
+            if ([token.ID isEqualToString:keyID] && [token.userName isEqualToString:userName]) {
                 TokenEntity* newToken = token;
                 [newTokenArray removeObject:tokenData];
-                newToken->keyName = newName;
+                newToken.keyName = newName;
                 [newTokenArray insertObject:newToken atIndex:index];
                 index++;
             }
@@ -161,7 +161,7 @@
     if (tokenArray != nil){
         for (NSData* tokenData in tokenArray){
             TokenEntity* token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-            if ([token->keyHandle isEqualToString:keyHandle]) {
+            if ([token.keyHandle isEqualToString:keyHandle]) {
                 return token;
             }
         }
@@ -178,12 +178,12 @@
     if (tokenArray != nil){
         for (NSData* tokenData in [newTokenArray copy]){
             TokenEntity* token = (TokenEntity*)[NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-            if ([token isKindOfClass:[TokenEntity class]] && [token->ID isEqualToString:tokenEntity->ID] && [token->userName isEqualToString:tokenEntity->userName]) {
+            if ([token isKindOfClass:[TokenEntity class]] && [token.ID isEqualToString:tokenEntity.ID] && [token.userName isEqualToString:tokenEntity.userName]) {
                 [newTokenArray removeObject:tokenData];
-                NSString* count = tokenEntity->count;
+                NSString* count = tokenEntity.count;
                 intCount = [count intValue];
                 intCount += 1;
-                tokenEntity->count = [NSString stringWithFormat:@"%d", intCount];
+                tokenEntity.count = [NSString stringWithFormat:@"%d", intCount];
                 [newTokenArray addObject:tokenEntity];
             }
         }
@@ -211,7 +211,7 @@
     if (tokenArray != nil){
         for (NSData* tokenData in tokenArray){
             TokenEntity* token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-            if ([token->ID isEqualToString:keyID] && [token->userName isEqualToString:userName]) {
+            if ([token.ID isEqualToString:keyID] && [token.userName isEqualToString:userName]) {
                 [newTokenArray removeObject:tokenData];
             }
         }

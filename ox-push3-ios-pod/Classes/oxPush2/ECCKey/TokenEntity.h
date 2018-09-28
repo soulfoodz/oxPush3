@@ -8,23 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TokenEntity : NSObject <NSCoding>{
+@interface TokenEntity : NSObject <NSCoding>
 
-    @public
-    NSString* ID;
-    NSString* application;
-    NSString* issuer;
-    NSString* privateKey;
-    NSString* publicKey;
-    NSString* keyHandle;
-    NSString* userName;
-    NSString* pairingTime;
-    NSString* authenticationMode;
-    NSString* authenticationType;
-    NSString* count;
-    NSString* keyName;
+@property (strong, nonatomic) NSString* ID;
+@property (strong, nonatomic) NSString* application;
+@property (strong, nonatomic) NSString* issuer;
+@property (strong, nonatomic) NSString* privateKey;
+@property (strong, nonatomic) NSString* publicKey;
+@property (strong, nonatomic) NSString* keyHandle;
+@property (strong, nonatomic) NSString* userName;
+@property (strong, nonatomic) NSString* pairingTime;
+@property (strong, nonatomic) NSString* authenticationMode;
+@property (strong, nonatomic) NSString* authenticationType;
+@property (strong, nonatomic) NSString* count;
+@property (strong, nonatomic) NSString* keyName;
 
-}
+
 
 -(id)initWithID:(NSString*)ID privateKey:(NSData*)privateKey publicKey:(NSData*)publicKey;
 -(BOOL)isExternalKey;

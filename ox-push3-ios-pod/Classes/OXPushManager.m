@@ -79,7 +79,7 @@
                     if (tokenEntities.count > 0) {
                         tokenEntity = tokenEntities[0];
                         
-                        NSString* kHandle = tokenEntity->keyHandle;
+                        NSString* kHandle = tokenEntity.keyHandle;
                         if (kHandle != nil){
                             [parameters setObject:kHandle forKey:@"keyhandle"];
                         }
