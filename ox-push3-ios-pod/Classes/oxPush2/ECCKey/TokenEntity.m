@@ -61,7 +61,7 @@
     }
 
 -(BOOL)isExternalKey{
-    return [privateKey isEqualToString:@""] || [publicKey isEqualToString:@""];
+    return [_privateKey isEqualToString:@""] || [_publicKey isEqualToString:@""];
 }
 
 @end
