@@ -43,7 +43,8 @@
         }
         [[ApiServiceManager sharedInstance] doRequest:oxRequest callback:^(NSDictionary *result,NSError *error){
             if (error) {
-                [self handleError:error];
+//                [self handleError:error];
+                handler(nil , error);
             } else {
                     // Success getting U2fMetaData
                 NSString* version = [result objectForKey:@"version"];
@@ -105,7 +106,7 @@
                 } else {
                     
                     if (!isDecline){
-                        [self postNotificationEnrollementStarting];
+//                        [self postNotificationEnrollementStarting];
                     }
                     
                     [self callServiceChallenge:u2fEndpoint isEnroll:isEnroll andParameters:parameters isDecline:isDecline isSecureClick:isSecureClick userName: username callback:^(NSDictionary *result,NSError *error){
@@ -139,7 +140,7 @@
     tokenManager.u2FKey = [[U2FKeyImpl alloc] init];
     if (isEnroll){
         if (!isDecline){
-            [self postNotificationEnrollementStarting];
+//            [self postNotificationEnrollementStarting];
         }
         [tokenManager enroll:result baseUrl:baseUrl isDecline:isDecline isSecureClick: isSecureClick callBack:^(TokenResponse *tokenResponse, NSError *error){
             [self handleTokenResponse:tokenResponse baseUrl:baseUrl isDecline:isDecline callback:handler];
@@ -167,7 +168,7 @@
         handler(nil , nil);
         [UserLoginInfo sharedInstance].logState = LOGIN_FAILED;
         [[DataStoreManager sharedInstance] saveUserLoginInfo:[UserLoginInfo sharedInstance]];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_FAILED object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AUTENTIFICATION_FAILED object:nil];
     } else {
         NSMutableDictionary* tokenParameters = [[NSMutableDictionary alloc] init];
         [tokenParameters setObject:@"username" forKey:@"username"];
@@ -221,7 +222,7 @@
         errorDescription = [error localizedDescription];
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ERROR object:errorDescription];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_ERROR object:errorDescription];
     
     NSLog(@"Error - %@", error);
 }
